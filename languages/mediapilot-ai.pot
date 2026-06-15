@@ -1,0 +1,1925 @@
+# Copyright (C) 2026 Your Name
+# This file is distributed under the GPL-2.0-or-later.
+msgid ""
+msgstr ""
+"Project-Id-Version: MediaPilot AI 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/mediapilot-ai\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-04-29T19:13:59+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.11.0\n"
+"X-Domain: mmp\n"
+
+#. Plugin Name of the plugin
+#: mediapilot-ai.php
+msgid "MediaPilot AI"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: mediapilot-ai.php
+msgid "https://brainstudioz.com/mediapilot-ai"
+msgstr ""
+
+#. Description of the plugin
+#: mediapilot-ai.php
+msgid "Media OS for WordPress — full media lifecycle from upload to delivery to analytics."
+msgstr ""
+
+#. Author of the plugin
+#: mediapilot-ai.php
+msgid "Your Name"
+msgstr ""
+
+#. Author URI of the plugin
+#: mediapilot-ai.php
+msgid "https://example.com"
+msgstr ""
+
+#: includes/AI/AiSettingsPage.php:49
+#: includes/AI/AiSettingsPage.php:224
+msgid "MediaPilot AI Settings"
+msgstr ""
+
+#: includes/AI/AiSettingsPage.php:50
+msgid "MediaPilot AI"
+msgstr ""
+
+#: includes/AI/AiSettingsPage.php:74
+msgid "AI provider"
+msgstr ""
+
+#: includes/AI/AiSettingsPage.php:75
+msgid "AWS access key ID"
+msgstr ""
+
+#: includes/AI/AiSettingsPage.php:76
+msgid "AWS secret access key"
+msgstr ""
+
+#: includes/AI/AiSettingsPage.php:77
+msgid "AWS region"
+msgstr ""
+
+#: includes/AI/AiSettingsPage.php:78
+msgid "Google Vision API key"
+msgstr ""
+
+#: includes/AI/AiSettingsPage.php:79
+msgid "Confidence threshold (%)"
+msgstr ""
+
+#: includes/AI/AiSettingsPage.php:80
+#: includes/Settings/SettingsPage.php:125
+msgid "Auto-assign folder"
+msgstr ""
+
+#: includes/AI/AiSettingsPage.php:81
+msgid "Auto-assign threshold (%)"
+msgstr ""
+
+#: includes/AI/AiSettingsPage.php:91
+#: includes/Compat/BeaverBuilderGalleryModule.php:120
+msgid "Disabled"
+msgstr ""
+
+#: includes/AI/AiSettingsPage.php:92
+msgid "AWS Rekognition"
+msgstr ""
+
+#: includes/AI/AiSettingsPage.php:93
+msgid "Google Cloud Vision"
+msgstr ""
+
+#: includes/AI/AiSettingsPage.php:104
+msgid "Select the AI service used for automatic image labelling on upload."
+msgstr ""
+
+#: includes/AI/AiSettingsPage.php:121
+#: includes/AI/AiSettingsPage.php:140
+msgid "Leave blank to keep the saved key"
+msgstr ""
+
+#: includes/AI/AiSettingsPage.php:131
+msgid "e.g. us-east-1, eu-west-1, ap-southeast-1"
+msgstr ""
+
+#: includes/AI/AiSettingsPage.php:142
+msgid "Enable the Cloud Vision API in Google Cloud Console before saving."
+msgstr ""
+
+#: includes/AI/AiSettingsPage.php:151
+msgid "Labels with a confidence score below this value are discarded (default: 70)."
+msgstr ""
+
+#: includes/AI/AiSettingsPage.php:159
+msgid "Automatically move the image to the best-matching folder when AI confidence is high enough"
+msgstr ""
+
+#: includes/AI/AiSettingsPage.php:169
+msgid "Minimum folder-match confidence required for automatic assignment (default: 85)."
+msgstr ""
+
+#: includes/AI/AiSettingsPage.php:220
+#: includes/Settings/SettingsPage.php:371
+msgid "You do not have permission to access this page."
+msgstr ""
+
+#: includes/AI/AiSettingsPage.php:226
+msgid "Choose an AI provider to automatically tag images on upload and suggest (or auto-assign) the best matching folder."
+msgstr ""
+
+#: includes/AI/OcrService.php:238
+msgid "OCR Extracted Text"
+msgstr ""
+
+#: includes/AI/OcrService.php:261
+msgid "OCR error — click to expand"
+msgstr ""
+
+#. translators: %d: number of words extracted by OCR
+#: includes/AI/OcrService.php:265
+msgid "Extracted text (%d words) — click to expand"
+msgstr ""
+
+#: includes/AI/OcrService.php:267
+msgid "No OCR text yet — click to expand"
+msgstr ""
+
+#: includes/AI/OcrService.php:275
+msgid "Last error:"
+msgstr ""
+
+#: includes/AI/OcrService.php:286
+msgid "No text has been extracted yet. OCR runs automatically on upload when a provider is configured under Media › MediaPilot AI Settings."
+msgstr ""
+
+#. translators: %s: provider name, e.g. "aws" or "google"
+#: includes/AI/OcrService.php:294
+msgid "Provider: %s"
+msgstr ""
+
+#. translators: %s: ISO 8601 timestamp
+#: includes/AI/OcrService.php:301
+msgid "Last run: %s"
+msgstr ""
+
+#: includes/API/AdvancedSearchRestController.php:146
+msgid "Saved filter not found."
+msgstr ""
+
+#: includes/API/AiTaggingRestController.php:62
+#: includes/API/AiTaggingRestController.php:78
+msgid "Attachment not found."
+msgstr ""
+
+#: includes/API/DocumentRestController.php:109
+#: includes/API/RestController.php:597
+#: includes/API/RestController.php:623
+#: includes/API/RestController.php:672
+#: includes/API/RestController.php:695
+#: includes/API/RestController.php:781
+#: includes/API/ShareRestController.php:115
+#: includes/Folder/ZipService.php:69
+msgid "Folder not found."
+msgstr ""
+
+#: includes/API/FolderTemplateRestController.php:141
+msgid "Template saved."
+msgstr ""
+
+#: includes/API/FolderTemplateRestController.php:200
+msgid "Template imported."
+msgstr ""
+
+#: includes/API/GraphQLSchema.php:83
+msgid "Pagination metadata for an MediaPilot file list."
+msgstr ""
+
+#: includes/API/GraphQLSchema.php:87
+msgid "Total number of files matching the query."
+msgstr ""
+
+#: includes/API/GraphQLSchema.php:91
+msgid "Whether more files exist after the current page."
+msgstr ""
+
+#: includes/API/GraphQLSchema.php:99
+msgid "A WordPress media attachment inside an MediaPilot folder."
+msgstr ""
+
+#: includes/API/GraphQLSchema.php:103
+#: includes/API/GraphQLSchema.php:392
+msgid "Attachment post ID."
+msgstr ""
+
+#: includes/API/GraphQLSchema.php:107
+msgid "Numeric attachment post ID."
+msgstr ""
+
+#: includes/API/GraphQLSchema.php:111
+msgid "Attachment title (post_title)."
+msgstr ""
+
+#: includes/API/GraphQLSchema.php:115
+msgid "Direct URL to the attachment file."
+msgstr ""
+
+#: includes/API/GraphQLSchema.php:119
+msgid "MIME type, e.g. \"image/jpeg\"."
+msgstr ""
+
+#: includes/API/GraphQLSchema.php:123
+msgid "File size in bytes."
+msgstr ""
+
+#: includes/API/GraphQLSchema.php:127
+msgid "Upload date (Y-m-d)."
+msgstr ""
+
+#: includes/API/GraphQLSchema.php:131
+msgid "Image ALT text (_wp_attachment_image_alt)."
+msgstr ""
+
+#: includes/API/GraphQLSchema.php:139
+msgid "Paginated list of MmpFile nodes."
+msgstr ""
+
+#: includes/API/GraphQLSchema.php:143
+msgid "The file nodes on this page."
+msgstr ""
+
+#: includes/API/GraphQLSchema.php:147
+msgid "Pagination metadata."
+msgstr ""
+
+#: includes/API/GraphQLSchema.php:155
+msgid "An MediaPilot folder (mmp_folder taxonomy term)."
+msgstr ""
+
+#: includes/API/GraphQLSchema.php:159
+#: includes/API/GraphQLSchema.php:288
+msgid "Folder term ID."
+msgstr ""
+
+#: includes/API/GraphQLSchema.php:163
+msgid "Numeric folder term ID."
+msgstr ""
+
+#: includes/API/GraphQLSchema.php:167
+#: includes/API/GraphQLSchema.php:308
+msgid "Folder name."
+msgstr ""
+
+#: includes/API/GraphQLSchema.php:171
+msgid "Folder slug."
+msgstr ""
+
+#: includes/API/GraphQLSchema.php:175
+msgid "Parent folder term ID (0 = root)."
+msgstr ""
+
+#: includes/API/GraphQLSchema.php:179
+msgid "Folder colour hex (mmp_folder_color meta)."
+msgstr ""
+
+#: includes/API/GraphQLSchema.php:183
+msgid "Number of files directly in this folder."
+msgstr ""
+
+#: includes/API/GraphQLSchema.php:187
+msgid "Direct child folders."
+msgstr ""
+
+#: includes/API/GraphQLSchema.php:195
+msgid "Paginated files in this folder."
+msgstr ""
+
+#: includes/API/GraphQLSchema.php:199
+msgid "Number of files to return (max 100)."
+msgstr ""
+
+#: includes/API/GraphQLSchema.php:203
+msgid "Offset cursor (numeric page index, 1-based)."
+msgstr ""
+
+#: includes/API/GraphQLSchema.php:207
+msgid "Search term to filter files by title."
+msgstr ""
+
+#: includes/API/GraphQLSchema.php:224
+msgid "Payload returned after mmpCreateFolder."
+msgstr ""
+
+#: includes/API/GraphQLSchema.php:226
+msgid "The newly created folder."
+msgstr ""
+
+#: includes/API/GraphQLSchema.php:232
+msgid "Payload returned after mmpMoveFolder."
+msgstr ""
+
+#: includes/API/GraphQLSchema.php:234
+msgid "The moved folder with its new parent."
+msgstr ""
+
+#: includes/API/GraphQLSchema.php:240
+msgid "Payload returned after mmpDeleteFolder."
+msgstr ""
+
+#: includes/API/GraphQLSchema.php:242
+msgid "The term ID of the deleted folder."
+msgstr ""
+
+#: includes/API/GraphQLSchema.php:248
+msgid "Payload returned after mmpAssignFile."
+msgstr ""
+
+#: includes/API/GraphQLSchema.php:250
+msgid "The assigned attachment ID."
+msgstr ""
+
+#: includes/API/GraphQLSchema.php:251
+msgid "The target folder term ID."
+msgstr ""
+
+#: includes/API/GraphQLSchema.php:265
+msgid "List all MediaPilot folders as a nested tree."
+msgstr ""
+
+#: includes/API/GraphQLSchema.php:269
+msgid "Filter to folders owned by a specific user (0 = global)."
+msgstr ""
+
+#: includes/API/GraphQLSchema.php:284
+msgid "Retrieve a single MediaPilot folder by its term ID."
+msgstr ""
+
+#: includes/API/GraphQLSchema.php:309
+msgid "Parent folder term ID (0 = top-level)."
+msgstr ""
+
+#: includes/API/GraphQLSchema.php:310
+msgid "Owner user ID (0 = global)."
+msgstr ""
+
+#: includes/API/GraphQLSchema.php:339
+msgid "Folder term ID to move."
+msgstr ""
+
+#: includes/API/GraphQLSchema.php:340
+msgid "Target parent term ID (0 = top-level)."
+msgstr ""
+
+#: includes/API/GraphQLSchema.php:368
+msgid "Folder term ID to delete."
+msgstr ""
+
+#: includes/API/GraphQLSchema.php:369
+msgid "Delete child folders recursively (default false)."
+msgstr ""
+
+#: includes/API/GraphQLSchema.php:393
+msgid "Target folder term ID."
+msgstr ""
+
+#: includes/API/GraphQLSchema.php:407
+msgid "You are not allowed to edit this file."
+msgstr ""
+
+#. translators: %s: capability name
+#: includes/API/GraphQLSchema.php:561
+msgid "You do not have permission to perform this action (%s)."
+msgstr ""
+
+#: includes/API/ReplaceRestController.php:83
+msgid "Invalid nonce."
+msgstr ""
+
+#: includes/API/ReplaceRestController.php:95
+msgid "Upload error (code %d)."
+msgstr ""
+
+#: includes/API/RestController.php:514
+msgid "You do not have permission to view another user's folders."
+msgstr ""
+
+#: includes/API/RestController.php:799
+#: includes/API/RestController.php:854
+msgid "Unexpected error."
+msgstr ""
+
+#: includes/API/RestController.php:826
+msgid "No attachment IDs provided."
+msgstr ""
+
+#: includes/API/RestController.php:841
+msgid "No valid attachment IDs provided."
+msgstr ""
+
+#: includes/API/RestController.php:875
+msgid "Failed to assign file to folder."
+msgstr ""
+
+#: includes/API/RestController.php:1067
+msgid "sort_files must be one of: name, date, modified, author, size."
+msgstr ""
+
+#: includes/API/RestController.php:1075
+msgid "sort_dir must be asc or desc."
+msgstr ""
+
+#: includes/API/RestController.php:1084
+msgid "sidebar_w must be between 160 and 480."
+msgstr ""
+
+#: includes/API/RestController.php:1092
+msgid "ui_theme must be one of: default, win11, dropbox."
+msgstr ""
+
+#: includes/API/ShareRestController.php:136
+msgid "Failed to create share link."
+msgstr ""
+
+#: includes/API/ShareRestController.php:153
+msgid "Share link not found."
+msgstr ""
+
+#: includes/Compat/AcfFolderPickerField.php:36
+msgid "MediaPilot Folder Picker"
+msgstr ""
+
+#: includes/Compat/AcfFolderPickerField.php:58
+msgid "Allow None"
+msgstr ""
+
+#: includes/Compat/AcfFolderPickerField.php:59
+msgid "Allow users to select \"None\" (saves 0)."
+msgstr ""
+
+#: includes/Compat/AcfFolderPickerField.php:66
+msgid "Return Format"
+msgstr ""
+
+#: includes/Compat/AcfFolderPickerField.php:67
+msgid "Specify the value returned by get_field()."
+msgstr ""
+
+#: includes/Compat/AcfFolderPickerField.php:71
+msgid "Folder ID (integer)"
+msgstr ""
+
+#: includes/Compat/AcfFolderPickerField.php:72
+msgid "Folder Name (string)"
+msgstr ""
+
+#: includes/Compat/AcfFolderPickerField.php:98
+#: includes/WooCommerce/ProductGallerySync.php:139
+msgid "— None —"
+msgstr ""
+
+#: includes/Compat/BeaverBuilderGalleryModule.php:38
+#: includes/Compat/BricksGalleryElement.php:165
+#: includes/Compat/DiviGalleryModule.php:46
+#: includes/Compat/ElementorGalleryWidget.php:80
+#: includes/Compat/WPBakeryGalleryElement.php:105
+msgid "Source"
+msgstr ""
+
+#: includes/Compat/BeaverBuilderGalleryModule.php:45
+#: includes/Compat/BricksGalleryElement.php:84
+#: includes/Compat/DiviGalleryModule.php:64
+#: includes/Compat/ElementorGalleryWidget.php:88
+#: includes/Compat/WPBakeryGalleryElement.php:101
+#: includes/Media/MediaLibraryIntegration.php:275
+#: includes/Media/MediaLibraryIntegration.php:388
+#: includes/PostType/PostTypeIntegration.php:110
+#: includes/Settings/PortalSettingsPage.php:103
+#: includes/Settings/PortalSettingsPage.php:158
+#: admin/assets/js/block-mmp-gallery.js:103
+msgid "Folder"
+msgstr ""
+
+#: includes/Compat/BeaverBuilderGalleryModule.php:48
+msgid "Choose the MediaPilot folder to display as a gallery."
+msgstr ""
+
+#: includes/Compat/BeaverBuilderGalleryModule.php:55
+#: includes/Compat/BeaverBuilderGalleryModule.php:62
+#: includes/Compat/BricksGalleryElement.php:95
+#: includes/Compat/BricksGalleryElement.php:166
+#: includes/Compat/DiviGalleryModule.php:47
+#: includes/Compat/DiviGalleryModule.php:72
+#: includes/Compat/ElementorGalleryWidget.php:102
+#: includes/Compat/ElementorGalleryWidget.php:110
+#: includes/Compat/WPBakeryGalleryElement.php:109
+#: includes/Compat/WPBakeryGalleryElement.php:118
+#: includes/Compat/WPBakeryGalleryElement.php:127
+#: includes/Compat/WPBakeryGalleryElement.php:136
+#: includes/Compat/WPBakeryGalleryElement.php:149
+#: admin/assets/js/block-mmp-gallery.js:124
+msgid "Layout"
+msgstr ""
+
+#: includes/Compat/BeaverBuilderGalleryModule.php:65
+#: includes/Compat/BricksGalleryElement.php:98
+#: includes/Compat/DiviGalleryModule.php:75
+#: includes/Compat/ElementorGalleryWidget.php:114
+#: includes/Compat/WPBakeryGalleryElement.php:112
+#: admin/assets/js/block-mmp-gallery.js:129
+msgid "Grid"
+msgstr ""
+
+#: includes/Compat/BeaverBuilderGalleryModule.php:66
+#: includes/Compat/BricksGalleryElement.php:99
+#: includes/Compat/DiviGalleryModule.php:76
+#: includes/Compat/ElementorGalleryWidget.php:115
+#: includes/Compat/WPBakeryGalleryElement.php:113
+#: admin/assets/js/block-mmp-gallery.js:130
+msgid "Masonry"
+msgstr ""
+
+#: includes/Compat/BeaverBuilderGalleryModule.php:67
+#: includes/Compat/BricksGalleryElement.php:100
+#: includes/Compat/DiviGalleryModule.php:77
+#: includes/Compat/ElementorGalleryWidget.php:116
+#: includes/Compat/WPBakeryGalleryElement.php:114
+#: admin/assets/js/block-mmp-gallery.js:131
+msgid "Flex"
+msgstr ""
+
+#: includes/Compat/BeaverBuilderGalleryModule.php:68
+#: includes/Compat/BricksGalleryElement.php:101
+#: includes/Compat/DiviGalleryModule.php:78
+#: includes/Compat/ElementorGalleryWidget.php:117
+#: includes/Compat/WPBakeryGalleryElement.php:115
+msgid "Carousel"
+msgstr ""
+
+#: includes/Compat/BeaverBuilderGalleryModule.php:73
+#: includes/Compat/BricksGalleryElement.php:109
+#: includes/Compat/DiviGalleryModule.php:84
+#: includes/Compat/ElementorGalleryWidget.php:125
+#: includes/Compat/WPBakeryGalleryElement.php:122
+#: admin/assets/js/block-mmp-gallery.js:137
+msgid "Columns"
+msgstr ""
+
+#: includes/Compat/BeaverBuilderGalleryModule.php:84
+#: includes/Compat/BricksGalleryElement.php:120
+#: includes/Compat/DiviGalleryModule.php:96
+#: includes/Compat/ElementorGalleryWidget.php:137
+#: includes/Compat/WPBakeryGalleryElement.php:131
+#: admin/assets/js/block-mmp-gallery.js:145
+msgid "Gap (px)"
+msgstr ""
+
+#: includes/Compat/BeaverBuilderGalleryModule.php:95
+#: includes/Compat/BricksGalleryElement.php:131
+#: includes/Compat/DiviGalleryModule.php:108
+#: includes/Compat/ElementorGalleryWidget.php:149
+#: includes/Compat/WPBakeryGalleryElement.php:140
+msgid "Image Size"
+msgstr ""
+
+#: includes/Compat/BeaverBuilderGalleryModule.php:98
+#: includes/Compat/BricksGalleryElement.php:134
+#: includes/Compat/DiviGalleryModule.php:111
+#: includes/Compat/ElementorGalleryWidget.php:153
+#: includes/Compat/WPBakeryGalleryElement.php:143
+#: admin/assets/js/block-mmp-gallery.js:156
+msgid "Thumbnail"
+msgstr ""
+
+#: includes/Compat/BeaverBuilderGalleryModule.php:99
+#: includes/Compat/BricksGalleryElement.php:135
+#: includes/Compat/DiviGalleryModule.php:112
+#: includes/Compat/ElementorGalleryWidget.php:154
+#: includes/Compat/WPBakeryGalleryElement.php:144
+#: admin/assets/js/block-mmp-gallery.js:157
+msgid "Medium"
+msgstr ""
+
+#: includes/Compat/BeaverBuilderGalleryModule.php:100
+#: includes/Compat/BricksGalleryElement.php:136
+#: includes/Compat/DiviGalleryModule.php:113
+#: includes/Compat/ElementorGalleryWidget.php:155
+#: includes/Compat/WPBakeryGalleryElement.php:145
+#: admin/assets/js/block-mmp-gallery.js:158
+msgid "Large"
+msgstr ""
+
+#: includes/Compat/BeaverBuilderGalleryModule.php:101
+#: includes/Compat/BricksGalleryElement.php:137
+#: includes/Compat/DiviGalleryModule.php:114
+#: includes/Compat/ElementorGalleryWidget.php:156
+#: includes/Compat/WPBakeryGalleryElement.php:146
+msgid "Full"
+msgstr ""
+
+#: includes/Compat/BeaverBuilderGalleryModule.php:109
+#: includes/Compat/BricksGalleryElement.php:167
+#: includes/Compat/DiviGalleryModule.php:48
+#: includes/Compat/ElementorGalleryWidget.php:167
+#: includes/Compat/WPBakeryGalleryElement.php:157
+#: includes/Compat/WPBakeryGalleryElement.php:165
+#: admin/assets/js/block-mmp-gallery.js:168
+msgid "Options"
+msgstr ""
+
+#: includes/Compat/BeaverBuilderGalleryModule.php:116
+#: includes/Compat/BricksGalleryElement.php:146
+#: includes/Compat/ElementorGalleryWidget.php:175
+#: includes/Compat/WPBakeryGalleryElement.php:153
+msgid "Lightbox"
+msgstr ""
+
+#: includes/Compat/BeaverBuilderGalleryModule.php:119
+msgid "Enabled"
+msgstr ""
+
+#: includes/Compat/BeaverBuilderGalleryModule.php:125
+#: includes/Compat/BricksGalleryElement.php:154
+#: includes/Compat/DiviGalleryModule.php:130
+#: includes/Compat/ElementorGalleryWidget.php:187
+#: includes/Compat/WPBakeryGalleryElement.php:161
+msgid "Show Caption"
+msgstr ""
+
+#: includes/Compat/BeaverBuilderGalleryModule.php:128
+#: includes/Compat/DiviGalleryModule.php:123
+#: includes/Compat/DiviGalleryModule.php:133
+#: includes/Settings/PortalSettingsPage.php:186
+msgid "Yes"
+msgstr ""
+
+#: includes/Compat/BeaverBuilderGalleryModule.php:129
+#: includes/Compat/DiviGalleryModule.php:124
+#: includes/Compat/DiviGalleryModule.php:134
+msgid "No"
+msgstr ""
+
+#: includes/Compat/BeaverBuilderGalleryModule.php:146
+#: includes/Compat/DiviGalleryModule.php:40
+#: includes/Compat/ElementorGalleryWidget.php:50
+#: includes/Compat/WPBakeryGalleryElement.php:39
+#: includes/Gallery/GalleryBlock.php:85
+#: admin/assets/js/block-mmp-gallery.js:187
+#: admin/assets/js/block-mmp-gallery.js:203
+msgid "MediaPilot Gallery"
+msgstr ""
+
+#: includes/Compat/BeaverBuilderGalleryModule.php:147
+#: includes/Compat/WPBakeryGalleryElement.php:41
+#: includes/Gallery/GalleryBlock.php:86
+#: admin/assets/js/block-mmp-gallery.js:204
+msgid "Display images from a MediaPilot AI folder."
+msgstr ""
+
+#: includes/Compat/BeaverBuilderGalleryModule.php:148
+#: includes/Compat/WPBakeryGalleryElement.php:42
+msgid "Media"
+msgstr ""
+
+#: includes/Compat/BeaverBuilderGalleryModule.php:185
+#: includes/Compat/BricksGalleryElement.php:198
+#: includes/Compat/DiviGalleryModule.php:174
+#: includes/Compat/ElementorGalleryWidget.php:230
+#: includes/Compat/WPBakeryGalleryElement.php:176
+msgid "— Select folder —"
+msgstr ""
+
+#: includes/Compat/BricksGalleryElement.php:88
+#: includes/Compat/WPBakeryGalleryElement.php:104
+msgid "Select the MediaPilot folder to display."
+msgstr ""
+
+#: includes/Compat/DiviGalleryModule.php:69
+msgid "Select the MediaPilot folder to display as a gallery."
+msgstr ""
+
+#: includes/Compat/DiviGalleryModule.php:120
+msgid "Enable Lightbox"
+msgstr ""
+
+#: includes/Compat/ElementorGalleryWidget.php:92
+msgid "Select the MediaPilot folder whose images to display."
+msgstr ""
+
+#: includes/Compat/ElementorGalleryWidget.php:177
+#: includes/Compat/ElementorGalleryWidget.php:189
+msgid "On"
+msgstr ""
+
+#: includes/Compat/ElementorGalleryWidget.php:178
+#: includes/Compat/ElementorGalleryWidget.php:190
+msgid "Off"
+msgstr ""
+
+#: includes/Compat/WPBakeryGalleryElement.php:155
+#: admin/assets/js/block-mmp-gallery.js:170
+msgid "Enable lightbox"
+msgstr ""
+
+#: includes/Compat/WPBakeryGalleryElement.php:163
+msgid "Show image captions"
+msgstr ""
+
+#: includes/CSV/CsvController.php:74
+#: includes/CSV/CsvController.php:91
+msgid "No valid CSV file was uploaded."
+msgstr ""
+
+#: includes/CSV/CsvController.php:107
+#: includes/Migration/MigrationController.php:110
+#: includes/Settings/SettingsPage.php:726
+msgid "You do not have permission to perform this action."
+msgstr ""
+
+#: includes/CSV/CsvController.php:114
+#: includes/Migration/MigrationController.php:121
+#: includes/Settings/SettingsPage.php:733
+msgid "Security check failed. Please try again."
+msgstr ""
+
+#. translators: 1: success count, 2: skipped count, 3: error count
+#: includes/CSV/CsvController.php:153
+msgid "Import complete — %1$d created, %2$d skipped, %3$d errors."
+msgstr ""
+
+#: includes/Filesystem/FilesystemSettingsPage.php:41
+msgid "MediaPilot Filesystem"
+msgstr ""
+
+#: includes/Filesystem/FilesystemSettingsPage.php:42
+msgid "Filesystem"
+msgstr ""
+
+#: includes/Filesystem/FilesystemSettingsPage.php:68
+msgid "Real Filesystem Mode"
+msgstr ""
+
+#: includes/Filesystem/FilesystemSettingsPage.php:92
+msgid "Enable Real Filesystem Mode"
+msgstr ""
+
+#: includes/Filesystem/FilesystemSettingsPage.php:96
+msgid "Files will be physically moved to %s{folder-slug}/ when assigned to a folder."
+msgstr ""
+
+#: includes/Filesystem/FilesystemSettingsPage.php:108
+#: includes/Licensing/LicenseSettingsPage.php:107
+#: includes/Optimization/OptimizationSettingsPage.php:170
+#: includes/Settings/PortalSettingsPage.php:83
+msgid "Insufficient permissions."
+msgstr ""
+
+#: includes/Filesystem/FilesystemSettingsPage.php:115
+msgid "MediaPilot Filesystem Settings"
+msgstr ""
+
+#: includes/Filesystem/FilesystemSettingsPage.php:120
+msgid "Warning: Real Filesystem Mode physically moves files on disk."
+msgstr ""
+
+#: includes/Filesystem/FilesystemSettingsPage.php:123
+msgid "Always test on a staging site before enabling on production."
+msgstr ""
+
+#: includes/Filesystem/FilesystemSettingsPage.php:124
+msgid "Take a full database and filesystem backup before enabling."
+msgstr ""
+
+#: includes/Filesystem/FilesystemSettingsPage.php:125
+msgid "Moving files updates all known URL references, but hard-coded URLs in theme templates are not touched."
+msgstr ""
+
+#: includes/Filesystem/FilesystemSettingsPage.php:126
+msgid "This feature cannot be auto-reversed; disable it and run a manual restore if needed."
+msgstr ""
+
+#: includes/Filesystem/FilesystemSettingsPage.php:141
+msgid "Directory Structure"
+msgstr ""
+
+#: includes/Filesystem/FilesystemSettingsPage.php:142
+msgid "When enabled, files are organised as follows:"
+msgstr ""
+
+#: includes/Filesystem/FilesystemSettingsPage.php:151
+msgid "Manual Reconciliation"
+msgstr ""
+
+#: includes/Filesystem/FilesystemSettingsPage.php:152
+msgid "If files become out of sync (e.g. after a bulk import), run the CLI sync tool:"
+msgstr ""
+
+#: includes/Folder/FolderService.php:56
+#: includes/Folder/FolderService.php:108
+msgid "Folder name must not be empty."
+msgstr ""
+
+#: includes/Folder/FolderTemplate.php:202
+msgid "Template name must not be empty."
+msgstr ""
+
+#: includes/Folder/FolderTemplate.php:320
+msgid "Invalid JSON payload."
+msgstr ""
+
+#: includes/Folder/FolderTemplate.php:324
+msgid "JSON must contain \"name\" and \"structure\" keys."
+msgstr ""
+
+#: includes/Folder/TemplatesAdminPage.php:40
+#: includes/Folder/TemplatesAdminPage.php:41
+msgid "Folder Templates"
+msgstr ""
+
+#: includes/Folder/ZipService.php:78
+#: includes/Folder/ZipService.php:118
+msgid "ZIP extension is not available on this server."
+msgstr ""
+
+#: includes/Frontend/DocumentLibrary.php:100
+msgid "Document library: no folder specified."
+msgstr ""
+
+#: includes/Frontend/DocumentLibrary.php:107
+msgid "Document library: folder not found."
+msgstr ""
+
+#: includes/Frontend/DocumentLibrary.php:138
+msgid "Folder navigation"
+msgstr ""
+
+#. translators: %d: number of files
+#: includes/Frontend/DocumentLibrary.php:216
+msgid "%d file"
+msgid_plural "%d files"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/Frontend/DocumentLibrary.php:233
+msgid "No files in this folder."
+msgstr ""
+
+#: includes/Frontend/DocumentLibrary.php:241
+#: includes/Frontend/DocumentLibrary.php:266
+msgid "File"
+msgstr ""
+
+#: includes/Frontend/DocumentLibrary.php:242
+#: includes/Frontend/DocumentLibrary.php:269
+msgid "Size"
+msgstr ""
+
+#: includes/Frontend/DocumentLibrary.php:243
+#: includes/Frontend/DocumentLibrary.php:271
+msgid "Date"
+msgstr ""
+
+#. translators: %s: file name
+#: includes/Frontend/DocumentLibrary.php:275
+msgid "Download %s"
+msgstr ""
+
+#: includes/Frontend/DocumentLibrary.php:276
+msgid "Download"
+msgstr ""
+
+#: includes/Frontend/DocumentLibrary.php:295
+msgid "Page navigation"
+msgstr ""
+
+#: includes/Frontend/DocumentLibrary.php:302
+msgid "Previous page"
+msgstr ""
+
+#: includes/Frontend/DocumentLibrary.php:327
+msgid "Next page"
+msgstr ""
+
+#. translators: %d: total file count
+#: includes/Frontend/DocumentLibrary.php:337
+msgid "%d file total"
+msgid_plural "%d files total"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/Gallery/GalleryRenderer.php:62
+msgid "No folder selected."
+msgstr ""
+
+#: includes/Gallery/GalleryRenderer.php:68
+msgid "No images in this folder."
+msgstr ""
+
+#: includes/Gallery/GalleryRenderer.php:299
+msgid "Previous slide"
+msgstr ""
+
+#: includes/Gallery/GalleryRenderer.php:300
+msgid "Next slide"
+msgstr ""
+
+#: includes/Gallery/GalleryRenderer.php:311
+msgid "Slide %1$d of %2$d"
+msgstr ""
+
+#: includes/Gallery/ShortcodeBuilderPage.php:45
+#: includes/Gallery/ShortcodeBuilderPage.php:46
+msgid "Shortcode Builder"
+msgstr ""
+
+#: includes/Licensing/LicenseManager.php:140
+msgid "License key cannot be empty."
+msgstr ""
+
+#: includes/Licensing/LicenseManager.php:148
+msgid "Activation failed."
+msgstr ""
+
+#: includes/Licensing/LicenseManager.php:160
+msgid "License activated successfully."
+msgstr ""
+
+#: includes/Licensing/LicenseManager.php:315
+msgid "Invalid response from licensing server."
+msgstr ""
+
+#: includes/Licensing/LicenseManager.php:338
+msgid "Activation denied."
+msgstr ""
+
+#: includes/Licensing/LicenseSettingsPage.php:49
+#: includes/Licensing/LicenseSettingsPage.php:137
+msgid "MediaPilot License"
+msgstr ""
+
+#: includes/Licensing/LicenseSettingsPage.php:50
+msgid "License"
+msgstr ""
+
+#: includes/Licensing/LicenseSettingsPage.php:94
+msgid "License deactivated."
+msgstr ""
+
+#: includes/Licensing/LicenseSettingsPage.php:120
+msgid "Active"
+msgstr ""
+
+#: includes/Licensing/LicenseSettingsPage.php:121
+msgid "Grace Period"
+msgstr ""
+
+#: includes/Licensing/LicenseSettingsPage.php:122
+msgid "Expired"
+msgstr ""
+
+#: includes/Licensing/LicenseSettingsPage.php:123
+msgid "Invalid"
+msgstr ""
+
+#: includes/Licensing/LicenseSettingsPage.php:124
+msgid "Free"
+msgstr ""
+
+#. translators: %s: expiry date
+#: includes/Licensing/LicenseSettingsPage.php:155
+msgid "Expires: %s"
+msgstr ""
+
+#. translators: %d: number of grace days
+#: includes/Licensing/LicenseSettingsPage.php:167
+msgid "Your subscription has ended. You have a %d-day grace period — renew now to avoid losing access."
+msgstr ""
+
+#: includes/Licensing/LicenseSettingsPage.php:175
+msgid "Your license is no longer active. Pro features have been disabled."
+msgstr ""
+
+#: includes/Licensing/LicenseSettingsPage.php:182
+msgid "License Key"
+msgstr ""
+
+#: includes/Licensing/LicenseSettingsPage.php:188
+msgid "XXXX-XXXX-XXXX-XXXX"
+msgstr ""
+
+#: includes/Licensing/LicenseSettingsPage.php:200
+#: includes/Licensing/LicenseSettingsPage.php:302
+msgid "Activate"
+msgstr ""
+
+#: includes/Licensing/LicenseSettingsPage.php:204
+msgid "Deactivate"
+msgstr ""
+
+#: includes/Licensing/LicenseSettingsPage.php:211
+msgid "Feature Matrix"
+msgstr ""
+
+#: includes/Licensing/LicenseSettingsPage.php:215
+msgid "Feature"
+msgstr ""
+
+#: includes/Licensing/LicenseSettingsPage.php:225
+msgid "Folders"
+msgstr ""
+
+#: includes/Licensing/LicenseSettingsPage.php:226
+msgid "Folder themes + colours"
+msgstr ""
+
+#: includes/Licensing/LicenseSettingsPage.php:227
+msgid "Drag-drop + bulk ops"
+msgstr ""
+
+#: includes/Licensing/LicenseSettingsPage.php:228
+msgid "Per-user folder mode"
+msgstr ""
+
+#: includes/Licensing/LicenseSettingsPage.php:229
+msgid "CSV import / export"
+msgstr ""
+
+#: includes/Licensing/LicenseSettingsPage.php:230
+msgid "Page builder integrations"
+msgstr ""
+
+#: includes/Licensing/LicenseSettingsPage.php:231
+msgid "Smart tags"
+msgstr ""
+
+#: includes/Licensing/LicenseSettingsPage.php:232
+msgid "Advanced permissions"
+msgstr ""
+
+#: includes/Licensing/LicenseSettingsPage.php:233
+msgid "Version control"
+msgstr ""
+
+#: includes/Licensing/LicenseSettingsPage.php:234
+msgid "Analytics dashboard"
+msgstr ""
+
+#: includes/Licensing/LicenseSettingsPage.php:235
+msgid "Duplicate detection"
+msgstr ""
+
+#: includes/Licensing/LicenseSettingsPage.php:236
+msgid "Cloud sync"
+msgstr ""
+
+#: includes/Licensing/LicenseSettingsPage.php:237
+msgid "AI auto-tagging"
+msgstr ""
+
+#: includes/Licensing/LicenseSettingsPage.php:238
+msgid "Advanced search"
+msgstr ""
+
+#: includes/Licensing/LicenseSettingsPage.php:239
+msgid "Client sharing portal"
+msgstr ""
+
+#: includes/Licensing/LicenseSettingsPage.php:240
+msgid "CDN + optimization"
+msgstr ""
+
+#: includes/Licensing/LicenseSettingsPage.php:241
+msgid "Real filesystem mode"
+msgstr ""
+
+#: includes/Licensing/LicenseSettingsPage.php:259
+msgid "Webhook URL"
+msgstr ""
+
+#: includes/Licensing/LicenseSettingsPage.php:261
+msgid "Paste this URL into your LemonSqueezy dashboard → Store → Webhooks to receive automatic subscription updates."
+msgstr ""
+
+#: includes/Licensing/LicenseSettingsPage.php:289
+msgid "Please enter your license key."
+msgstr ""
+
+#: includes/Licensing/LicenseSettingsPage.php:293
+msgid "Activating…"
+msgstr ""
+
+#: includes/Licensing/LicenseSettingsPage.php:309
+msgid "Deactivate this license on this site?"
+msgstr ""
+
+#: includes/Media/DuplicateDetector.php:671
+msgid "Find Similar (%d found)"
+msgid_plural "Find Similar (%d found)"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/Media/DuplicateDetector.php:672
+#: includes/Media/DuplicateDetector.php:739
+#: includes/Media/DuplicateDetector.php:757
+msgid "Find Similar Images"
+msgstr ""
+
+#: includes/Media/DuplicateDetector.php:688
+msgid "Visual Duplicates"
+msgstr ""
+
+#: includes/Media/DuplicateDetector.php:730
+msgid "Searching…"
+msgstr ""
+
+#: includes/Media/DuplicateDetector.php:738
+msgid "No visually similar images found."
+msgstr ""
+
+#: includes/Media/DuplicateDetector.php:744
+msgid "similar image(s):"
+msgstr ""
+
+#: includes/Media/DuplicateDetector.php:752
+msgid "Refresh"
+msgstr ""
+
+#: includes/Media/DuplicateDetector.php:756
+msgid "Error loading results."
+msgstr ""
+
+#: includes/Media/DuplicatesAdminPage.php:43
+msgid "Duplicate Files"
+msgstr ""
+
+#: includes/Media/DuplicatesAdminPage.php:44
+msgid "Duplicates"
+msgstr ""
+
+#: includes/Media/MediaLibraryIntegration.php:368
+msgid "Uncategorized"
+msgstr ""
+
+#. translators: %s: current filename
+#: includes/Media/MediaReplacer.php:107
+msgid "Current file: %s"
+msgstr ""
+
+#: includes/Media/MediaReplacer.php:113
+msgid "Upload &amp; Replace"
+msgstr ""
+
+#: includes/Media/MediaReplacer.php:119
+msgid "Replace File"
+msgstr ""
+
+#: includes/Media/MediaReplacer.php:178
+msgid "Uploading…"
+msgstr ""
+
+#: includes/Media/MediaReplacer.php:193
+msgid "Replaced! Reloading…"
+msgstr ""
+
+#: includes/Media/MediaReplacer.php:197
+msgid "Error."
+msgstr ""
+
+#: includes/Migration/MigrationController.php:54
+msgid "Migration started. Progress will update below."
+msgstr ""
+
+#: includes/Migration/MigrationController.php:55
+msgid "Could not start migration. It may already be running or the importer is unknown."
+msgstr ""
+
+#: includes/Migration/MigrationController.php:68
+msgid "Migration cancelled."
+msgstr ""
+
+#: includes/Optimization/OptimizationSettingsPage.php:50
+#: includes/Optimization/OptimizationSettingsPage.php:176
+msgid "MediaPilot Optimization"
+msgstr ""
+
+#: includes/Optimization/OptimizationSettingsPage.php:51
+msgid "Optimization"
+msgstr ""
+
+#: includes/Optimization/OptimizationSettingsPage.php:75
+msgid "Auto WebP conversion"
+msgstr ""
+
+#: includes/Optimization/OptimizationSettingsPage.php:76
+msgid "Auto AVIF conversion"
+msgstr ""
+
+#: includes/Optimization/OptimizationSettingsPage.php:77
+msgid "Compression quality"
+msgstr ""
+
+#: includes/Optimization/OptimizationSettingsPage.php:78
+msgid "CDN provider"
+msgstr ""
+
+#: includes/Optimization/OptimizationSettingsPage.php:79
+msgid "CDN base URL"
+msgstr ""
+
+#: includes/Optimization/OptimizationSettingsPage.php:80
+msgid "Lazy-load content images"
+msgstr ""
+
+#: includes/Optimization/OptimizationSettingsPage.php:106
+msgid "Convert new uploads to WebP on upload (GD or Imagick)"
+msgstr ""
+
+#: includes/Optimization/OptimizationSettingsPage.php:116
+msgid "(Imagick + AVIF support required — not detected)"
+msgstr ""
+
+#: includes/Optimization/OptimizationSettingsPage.php:119
+msgid "Convert new uploads to AVIF on upload (requires Imagick)"
+msgstr ""
+
+#: includes/Optimization/OptimizationSettingsPage.php:126
+msgid "1 (smallest) – 100 (lossless). Recommended: 75–85."
+msgstr ""
+
+#: includes/Optimization/OptimizationSettingsPage.php:133
+msgid "None (disabled)"
+msgstr ""
+
+#: includes/Optimization/OptimizationSettingsPage.php:134
+msgid "Cloudflare CDN"
+msgstr ""
+
+#: includes/Optimization/OptimizationSettingsPage.php:135
+msgid "BunnyCDN"
+msgstr ""
+
+#: includes/Optimization/OptimizationSettingsPage.php:136
+msgid "AWS CloudFront"
+msgstr ""
+
+#: includes/Optimization/OptimizationSettingsPage.php:137
+msgid "Custom URL"
+msgstr ""
+
+#: includes/Optimization/OptimizationSettingsPage.php:153
+msgid "Leave blank to disable CDN rewriting."
+msgstr ""
+
+#: includes/Optimization/OptimizationSettingsPage.php:160
+msgid "Add loading=\"lazy\" to images in post content that are missing the attribute"
+msgstr ""
+
+#: includes/Optimization/OptimizationSettingsPage.php:182
+msgid "Speed Dashboard"
+msgstr ""
+
+#: includes/Optimization/OptimizationSettingsPage.php:186
+msgid "Images optimized"
+msgstr ""
+
+#: includes/Optimization/OptimizationSettingsPage.php:187
+msgid "WebP converted"
+msgstr ""
+
+#: includes/Optimization/OptimizationSettingsPage.php:188
+msgid "AVIF converted"
+msgstr ""
+
+#: includes/Optimization/OptimizationSettingsPage.php:189
+msgid "Total savings"
+msgstr ""
+
+#: includes/Optimization/OptimizationSettingsPage.php:190
+msgid "Conversion rate"
+msgstr ""
+
+#: includes/Optimization/OptimizationSettingsPage.php:201
+msgid "Stats update as images are converted. Run a batch via WP-CLI: wp mmp optimize"
+msgstr ""
+
+#: includes/Settings/PortalSettingsPage.php:55
+msgid "MediaPilot Portal"
+msgstr ""
+
+#: includes/Settings/PortalSettingsPage.php:56
+msgid "Portal"
+msgstr ""
+
+#: includes/Settings/PortalSettingsPage.php:93
+msgid "Client Sharing Portal"
+msgstr ""
+
+#: includes/Settings/PortalSettingsPage.php:95
+msgid "Create shareable links to folders. Clients can browse, preview, and download files without a WordPress login."
+msgstr ""
+
+#: includes/Settings/PortalSettingsPage.php:100
+msgid "Create Share Link"
+msgstr ""
+
+#: includes/Settings/PortalSettingsPage.php:106
+msgid "— select folder —"
+msgstr ""
+
+#: includes/Settings/PortalSettingsPage.php:116
+#: includes/Settings/PortalSettingsPage.php:160
+msgid "Password"
+msgstr ""
+
+#: includes/Settings/PortalSettingsPage.php:118
+msgid "Leave blank for no password"
+msgstr ""
+
+#: includes/Settings/PortalSettingsPage.php:122
+#: includes/Settings/PortalSettingsPage.php:161
+msgid "Expires"
+msgstr ""
+
+#: includes/Settings/PortalSettingsPage.php:125
+msgid "Leave blank for no expiry"
+msgstr ""
+
+#: includes/Settings/PortalSettingsPage.php:129
+msgid "Header Colour"
+msgstr ""
+
+#: includes/Settings/PortalSettingsPage.php:135
+msgid "Logo URL"
+msgstr ""
+
+#: includes/Settings/PortalSettingsPage.php:144
+#: includes/Settings/PortalSettingsPage.php:269
+msgid "Generate Share Link"
+msgstr ""
+
+#: includes/Settings/PortalSettingsPage.php:150
+msgid "Active Share Links"
+msgstr ""
+
+#: includes/Settings/PortalSettingsPage.php:153
+msgid "No share links yet."
+msgstr ""
+
+#: includes/Settings/PortalSettingsPage.php:159
+msgid "Portal URL"
+msgstr ""
+
+#: includes/Settings/PortalSettingsPage.php:162
+msgid "Downloads"
+msgstr ""
+
+#: includes/Settings/PortalSettingsPage.php:163
+msgid "Created"
+msgstr ""
+
+#: includes/Settings/PortalSettingsPage.php:164
+#: includes/Settings/SettingsPage.php:588
+msgid "Actions"
+msgstr ""
+
+#: includes/Settings/PortalSettingsPage.php:182
+msgid "Click to select"
+msgstr ""
+
+#: includes/Settings/PortalSettingsPage.php:194
+msgid "expired"
+msgstr ""
+
+#: includes/Settings/PortalSettingsPage.php:206
+msgid "Revoke this share link? Clients will immediately lose access."
+msgstr ""
+
+#: includes/Settings/PortalSettingsPage.php:207
+msgid "Revoke"
+msgstr ""
+
+#: includes/Settings/PortalSettingsPage.php:240
+msgid "Please select a folder."
+msgstr ""
+
+#: includes/Settings/PortalSettingsPage.php:244
+msgid "Creating…"
+msgstr ""
+
+#: includes/Settings/PortalSettingsPage.php:261
+msgid "Error creating link."
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:93
+#: includes/Settings/SettingsPage.php:94
+#: includes/Settings/SettingsPage.php:380
+msgid "MediaPilot Settings"
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:119
+msgid "Folder mode"
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:120
+msgid "Default sort"
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:126
+msgid "SVG uploads"
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:131
+msgid "Enabled post types"
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:141
+msgid "Global (shared)"
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:141
+msgid "All users share one folder tree."
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:142
+msgid "Per-user (private)"
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:142
+msgid "Each user has their own independent folder tree."
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:162
+msgid "Name (A–Z)"
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:163
+msgid "Date (newest first)"
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:164
+msgid "File size (largest first)"
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:165
+msgid "File type"
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:175
+msgid "Default sort order applied when a user first opens a folder."
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:192
+msgid "Enable auto-assign"
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:193
+msgid "When enabled, files uploaded while a folder is active are automatically placed in that folder."
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:208
+msgid "Allow SVG uploads"
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:209
+msgid "Adds SVG to the list of allowed upload MIME types. Ensure you trust all uploading users before enabling this."
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:225
+msgid "No public post types found."
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:246
+msgid "Developers can also register types via the mmp_post_type_folders filter."
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:308
+msgid "Folder tree cache flushed."
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:317
+msgid "Settings reset to defaults."
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:327
+msgid "Deletion cancelled — you must type DELETE to confirm."
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:362
+msgid "All MediaPilot data deleted."
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:385
+msgid "General"
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:386
+msgid "Upload"
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:387
+msgid "Post Types"
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:388
+msgid "Advanced"
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:389
+msgid "Import / Export"
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:390
+msgid "Migrate from Plugin"
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:438
+msgid "Cache"
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:439
+msgid "MediaPilot caches the folder tree in WordPress transients. Flush the cache if folders appear out of date."
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:443
+msgid "Flush folder tree cache"
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:448
+msgid "Reset settings"
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:449
+msgid "Restores all plugin settings to their default values. Folder data is not affected."
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:453
+msgid "Reset to defaults"
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:458
+msgid "Delete all plugin data"
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:460
+msgid "Permanently deletes all MediaPilot folders, file assignments, custom tables, and settings. This cannot be undone."
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:468
+msgid "Confirm deletion"
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:472
+msgid "Type DELETE to confirm"
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:474
+msgid "Type DELETE (in caps) and click the button to proceed."
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:478
+msgid "Delete all MediaPilot data"
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:499
+msgid "Export"
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:500
+msgid "Download your folder data as CSV files for backup or migration."
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:503
+#: includes/Settings/SettingsPage.php:527
+msgid "Folder structure"
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:506
+msgid "Download folders.csv"
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:508
+msgid "Exports all folders: id, name, parent_id, color, file_count."
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:512
+#: includes/Settings/SettingsPage.php:543
+msgid "File assignments"
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:515
+msgid "Download file-assignments.csv"
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:517
+msgid "Exports all file-to-folder assignments: attachment_id, folder_id, folder_name, file_title, file_url."
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:524
+msgid "Import"
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:525
+msgid "Upload a previously exported CSV to recreate your folder tree or restore file assignments."
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:533
+msgid "Upload folders CSV"
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:536
+msgid "Recreates the folder tree from a folders.csv export. Existing folders are not removed."
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:540
+msgid "Import folder structure"
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:549
+msgid "Upload assignments CSV"
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:552
+msgid "Reassigns files to folders from a file-assignments.csv export."
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:556
+msgid "Restore file assignments"
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:567
+msgid "Migration service unavailable."
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:573
+msgid "Migrate from another plugin"
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:575
+msgid "Import your existing folder structure and file assignments from another media organiser plugin. The import runs in the background using WP-Cron and will not time out on large libraries."
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:579
+msgid "No importers registered."
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:584
+msgid "Plugin"
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:585
+msgid "Source taxonomy"
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:586
+msgid "Status"
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:587
+msgid "Progress"
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:609
+msgid "Plugin not active"
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:611
+msgid "Running…"
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:613
+#: includes/Settings/SettingsPage.php:688
+msgid "Done"
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:615
+#: includes/Settings/SettingsPage.php:688
+msgid "Error"
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:617
+msgid "Idle"
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:640
+msgid "Re-import"
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:640
+msgid "Start import"
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:648
+msgid "Cancel"
+msgstr ""
+
+#: includes/Settings/SettingsPage.php:659
+msgid "Show log"
+msgstr ""
+
+#: includes/Taxonomy/FolderTaxonomy.php:162
+msgctxt "taxonomy general name"
+msgid "Folders"
+msgstr ""
+
+#: includes/Taxonomy/FolderTaxonomy.php:163
+msgctxt "taxonomy singular name"
+msgid "Folder"
+msgstr ""
+
+#: includes/Taxonomy/FolderTaxonomy.php:164
+msgid "Search Folders"
+msgstr ""
+
+#: includes/Taxonomy/FolderTaxonomy.php:165
+msgid "Popular Folders"
+msgstr ""
+
+#: includes/Taxonomy/FolderTaxonomy.php:166
+msgid "All Folders"
+msgstr ""
+
+#: includes/Taxonomy/FolderTaxonomy.php:167
+msgid "Parent Folder"
+msgstr ""
+
+#: includes/Taxonomy/FolderTaxonomy.php:168
+msgid "Parent Folder:"
+msgstr ""
+
+#: includes/Taxonomy/FolderTaxonomy.php:169
+msgid "Edit Folder"
+msgstr ""
+
+#: includes/Taxonomy/FolderTaxonomy.php:170
+msgid "View Folder"
+msgstr ""
+
+#: includes/Taxonomy/FolderTaxonomy.php:171
+msgid "Update Folder"
+msgstr ""
+
+#: includes/Taxonomy/FolderTaxonomy.php:172
+msgid "Add New Folder"
+msgstr ""
+
+#: includes/Taxonomy/FolderTaxonomy.php:173
+msgid "New Folder Name"
+msgstr ""
+
+#: includes/Taxonomy/FolderTaxonomy.php:174
+msgid "Separate folders with commas"
+msgstr ""
+
+#: includes/Taxonomy/FolderTaxonomy.php:175
+msgid "Add or remove folders"
+msgstr ""
+
+#: includes/Taxonomy/FolderTaxonomy.php:176
+msgid "Choose from the most used folders"
+msgstr ""
+
+#: includes/Taxonomy/FolderTaxonomy.php:177
+msgid "No folders found."
+msgstr ""
+
+#: includes/Taxonomy/FolderTaxonomy.php:178
+msgid "No folders"
+msgstr ""
+
+#: includes/Taxonomy/FolderTaxonomy.php:179
+msgid "Filter by folder"
+msgstr ""
+
+#: includes/Taxonomy/FolderTaxonomy.php:180
+msgid "Folders list navigation"
+msgstr ""
+
+#: includes/Taxonomy/FolderTaxonomy.php:181
+msgid "Folders list"
+msgstr ""
+
+#: includes/Taxonomy/FolderTaxonomy.php:182
+msgctxt "folder taxonomy"
+msgid "Most Used"
+msgstr ""
+
+#: includes/Taxonomy/FolderTaxonomy.php:183
+msgid "&larr; Go to Folders"
+msgstr ""
+
+#: includes/Taxonomy/FolderTaxonomy.php:184
+msgctxt "navigation link block title"
+msgid "Folder Link"
+msgstr ""
+
+#: includes/Taxonomy/FolderTaxonomy.php:185
+msgctxt "navigation link block description"
+msgid "A link to a folder."
+msgstr ""
+
+#: includes/Taxonomy/FolderTaxonomy.php:186
+msgctxt "admin menu"
+msgid "Folders"
+msgstr ""
+
+#: includes/Upload/UploadHandler.php:246
+msgid "Upload to Folder:"
+msgstr ""
+
+#: includes/Upload/UploadHandler.php:249
+msgid "— No Folder (Uncategorized)"
+msgstr ""
+
+#: includes/WooCommerce/ProductGallerySync.php:118
+msgid "MediaPilot — Sync Gallery from Folder"
+msgstr ""
+
+#: includes/WooCommerce/ProductGallerySync.php:136
+msgid "Linked MediaPilot Folder"
+msgstr ""
+
+#: includes/WooCommerce/ProductGallerySync.php:149
+msgid "Images from the selected folder are added to the product gallery automatically when files change."
+msgstr ""
+
+#: includes/WooCommerce/ProductGallerySync.php:156
+msgid "Sync Now"
+msgstr ""
+
+#: includes/WooCommerce/ProductGallerySync.php:170
+msgid "Syncing…"
+msgstr ""
+
+#: includes/WooCommerce/ProductGallerySync.php:186
+msgid "Synced!"
+msgstr ""
+
+#: includes/WooCommerce/ProductGallerySync.php:191
+msgid "Sync failed."
+msgstr ""
+
+#: includes/WooCommerce/ProductGallerySync.php:197
+msgid "Request failed. Please try again."
+msgstr ""
+
+#: includes/WooCommerce/ProductGallerySync.php:267
+msgid "No MediaPilot folder linked to this product."
+msgstr ""
+
+#. translators: %d: number of images synced
+#: includes/WooCommerce/ProductGallerySync.php:281
+msgid "%d image synced."
+msgid_plural "%d images synced."
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/assets/js/block-mmp-gallery.js:66
+msgid "Loading…"
+msgstr ""
+
+#: admin/assets/js/block-mmp-gallery.js:80
+msgid "— Select a folder —"
+msgstr ""
+
+#: admin/assets/js/block-mmp-gallery.js:86
+msgid "Failed to load folders"
+msgstr ""
+
+#: admin/assets/js/block-mmp-gallery.js:107
+msgid "Source folder"
+msgstr ""
+
+#: admin/assets/js/block-mmp-gallery.js:126
+msgid "Gallery layout"
+msgstr ""
+
+#: admin/assets/js/block-mmp-gallery.js:153
+msgid "Image size"
+msgstr ""
+
+#: admin/assets/js/block-mmp-gallery.js:159
+msgid "Full size"
+msgstr ""
+
+#: admin/assets/js/block-mmp-gallery.js:171
+msgid "Wraps each image in a full-size link for lightbox plugins."
+msgstr ""
+
+#: admin/assets/js/block-mmp-gallery.js:189
+msgid "MediaPilot Gallery — select a folder in the block settings →"
+msgstr ""
+
+#: admin/assets/js/block-mmp-gallery.js:207
+msgid "gallery"
+msgstr ""
+
+#: admin/assets/js/block-mmp-gallery.js:207
+msgid "folder"
+msgstr ""
+
+#: admin/assets/js/block-mmp-gallery.js:207
+msgid "images"
+msgstr ""

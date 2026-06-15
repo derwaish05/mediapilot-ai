@@ -1,0 +1,28 @@
+/**
+ * MediaPilot Gallery block — block editor styles.
+ *
+ * Applied only inside the Gutenberg editor canvas (not on the frontend).
+ * Loaded via the 'editorStyle' handle in GalleryBlock::enqueueEditorAssets().
+ */
+
+.mediapilot-gallery-editor-preview {
+    background: #f6f7f7;
+    border: 1px dashed #ccd0d4;
+    border-radius: 4px;
+    padding: 24px 16px;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.mediapilot-gallery-editor-preview__label {
+    margin: 0;
+    color: #757575;
+    font-style: italic;
+    font-size: 13px;
+    line-height: 1.5;
+}

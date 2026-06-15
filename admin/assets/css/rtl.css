@@ -1,0 +1,97 @@
+/**
+ * RTL (Right-to-Left) overrides for MediaPilot AI.
+ *
+ * Loaded automatically when WordPress detects an RTL locale
+ * (Arabic, Hebrew, Persian, Urdu, etc.).
+ *
+ * All direction-aware properties are overridden here so the
+ * LTR stylesheet never needs conditional logic.
+ */
+
+/* Sidebar: flip horizontal layout */
+#mediapilot-sidebar {
+  direction: rtl;
+}
+
+/* Folder tree indentation: flip left→right */
+.mediapilot-node-row {
+  padding-left: 0;
+  padding-right: var(--mediapilot-indent, 4px);
+}
+
+/* Folder sidebar resize handle: move to left edge in RTL */
+#mediapilot-sidebar [role="separator"][aria-orientation="vertical"] {
+  right: auto;
+  left: 0.5rem;
+}
+
+/* Collapse/expand chevron: mirror */
+.mediapilot-collapse-btn svg {
+  transform: scaleX(-1);
+}
+
+/* Breadcrumb separator: flip direction */
+.mediapilot-breadcrumb__sep {
+  transform: scaleX(-1);
+}
+
+/* Context menu: open to the left */
+.mediapilot-context-menu {
+  left: auto;
+  right: 0;
+}
+
+/* Media toolbar sort controls: flip order */
+.mediapilot-toolbar {
+  direction: rtl;
+}
+
+/* Gallery grid: flip text alignment */
+.mediapilot-gallery__caption {
+  text-align: right;
+}
+
+/* Carousel prev/next buttons: swap positions */
+.mediapilot-carousel__btn--prev {
+  left: auto;
+  right: 8px;
+}
+
+.mediapilot-carousel__btn--next {
+  right: auto;
+  left: 8px;
+}
+
+/* Carousel track: flip slide direction */
+.mediapilot-carousel__track {
+  direction: ltr; /* keep image order correct; translate still works */
+}
+
+/* Badge: flip margin */
+.mediapilot-badge {
+  margin-left: 0;
+  margin-right: 4px;
+}
+
+/* Cut banner: flip icon margin */
+.mediapilot-cut-banner svg {
+  margin-right: 0;
+  margin-left: 8px;
+}
+
+/* Folder node action buttons: flip to left side */
+.mediapilot-node-actions {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+/* Search box: flip icon position */
+.mediapilot-search-icon {
+  left: auto;
+  right: 8px;
+}
+
+.mediapilot-search-input {
+  padding-left: 8px;
+  padding-right: 28px;
+}

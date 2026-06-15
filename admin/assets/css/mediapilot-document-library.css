@@ -1,0 +1,359 @@
+/* ==========================================================================
+   MediaPilot Document Library — frontend stylesheet (S41)
+   Loaded only when the [mdpai_documents] shortcode is present on the page.
+   ========================================================================== */
+
+/* ── Container ────────────────────────────────────────────────────────────── */
+.mediapilot-doc-library {
+    --mediapilot-dl-radius: 6px;
+    --mediapilot-dl-border: #e2e8f0;
+    --mediapilot-dl-bg: #ffffff;
+    --mediapilot-dl-row-hover: #f8fafc;
+    --mediapilot-dl-text: #1e293b;
+    --mediapilot-dl-muted: #64748b;
+    --mediapilot-dl-accent: #3b82f6;
+    --mediapilot-dl-accent-hover: #2563eb;
+    --mediapilot-dl-icon-pdf: #ef4444;
+    --mediapilot-dl-icon-doc: #3b82f6;
+    --mediapilot-dl-icon-sheet: #22c55e;
+    --mediapilot-dl-icon-ppt: #f97316;
+    --mediapilot-dl-icon-archive: #a855f7;
+    --mediapilot-dl-icon-audio: #ec4899;
+    --mediapilot-dl-icon-video: #6366f1;
+    --mediapilot-dl-icon-image: #14b8a6;
+    --mediapilot-dl-icon-text: #78716c;
+    --mediapilot-dl-icon-file: #94a3b8;
+
+    font-family: inherit;
+    color: var(--mediapilot-dl-text);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.mediapilot-doclib-notice {
+    color: var(--mediapilot-dl-muted);
+    font-style: italic;
+    padding: 1rem 0;
+}
+
+/* ── Breadcrumb ───────────────────────────────────────────────────────────── */
+.mediapilot-doclib__breadcrumb {
+    margin-bottom: 1rem;
+}
+
+.mediapilot-doclib__crumb-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.25rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.mediapilot-doclib__crumb {
+    display: flex;
+    align-items: center;
+}
+
+.mediapilot-doclib__crumb:not(:last-child)::after {
+    content: "/";
+    color: var(--mediapilot-dl-muted);
+    margin-left: 0.25rem;
+    pointer-events: none;
+}
+
+.mediapilot-doclib__crumb-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    color: var(--mediapilot-dl-accent);
+    font-size: inherit;
+    font-family: inherit;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.mediapilot-doclib__crumb-btn:hover {
+    color: var(--mediapilot-dl-accent-hover);
+}
+
+.mediapilot-doclib__crumb--current {
+    color: var(--mediapilot-dl-muted);
+}
+
+/* ── Subfolders grid ─────────────────────────────────────────────────────── */
+.mediapilot-doclib__subfolders {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+}
+
+.mediapilot-doclib__subfolder {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.45rem 0.85rem;
+    background: var(--mediapilot-dl-bg);
+    border: 1px solid var(--mediapilot-dl-border);
+    border-radius: var(--mediapilot-dl-radius);
+    cursor: pointer;
+    font-size: 0.875rem;
+    font-family: inherit;
+    color: var(--mediapilot-dl-text);
+    transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.mediapilot-doclib__subfolder:hover {
+    border-color: var(--mediapilot-dl-accent);
+    box-shadow: 0 0 0 3px rgba(59,130,246,0.15);
+}
+
+.mediapilot-doclib__subfolder-icon {
+    font-size: 1rem;
+    line-height: 1;
+}
+
+.mediapilot-doclib__subfolder-count {
+    color: var(--mediapilot-dl-muted);
+    font-size: 0.8rem;
+}
+
+/* ── Loading overlay ─────────────────────────────────────────────────────── */
+.mediapilot-doclib__body {
+    transition: opacity 0.15s;
+}
+
+.mediapilot-doclib__body--loading {
+    opacity: 0.45;
+    pointer-events: none;
+}
+
+/* ── File table ──────────────────────────────────────────────────────────── */
+.mediapilot-doclib__table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--mediapilot-dl-border);
+    border-radius: var(--mediapilot-dl-radius);
+}
+
+.mediapilot-doclib__table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--mediapilot-dl-bg);
+}
+
+.mediapilot-doclib__table thead {
+    background: #f1f5f9;
+}
+
+.mediapilot-doclib__table th {
+    padding: 0.6rem 0.75rem;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--mediapilot-dl-muted);
+    border-bottom: 1px solid var(--mediapilot-dl-border);
+    white-space: nowrap;
+}
+
+.mediapilot-doclib__table td {
+    padding: 0.65rem 0.75rem;
+    border-bottom: 1px solid var(--mediapilot-dl-border);
+    vertical-align: middle;
+}
+
+.mediapilot-doclib__table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.mediapilot-doclib__table tbody tr:hover td {
+    background: var(--mediapilot-dl-row-hover);
+}
+
+/* Column widths */
+.mediapilot-doclib__col-icon { width: 2.25rem; padding-right: 0; }
+.mediapilot-doclib__col-name { width: auto; }
+.mediapilot-doclib__col-size { width: 6rem; white-space: nowrap; }
+.mediapilot-doclib__col-date { width: 7rem; white-space: nowrap; color: var(--mediapilot-dl-muted); font-size: 0.85rem; }
+.mediapilot-doclib__col-dl   { width: 6.5rem; text-align: right; }
+
+.mediapilot-doclib__filename {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    word-break: break-word;
+}
+
+/* ── File icons ──────────────────────────────────────────────────────────── */
+.mediapilot-doclib__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.mediapilot-doclib__icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+.mediapilot-doclib__icon--pdf     { color: var(--mediapilot-dl-icon-pdf);     }
+.mediapilot-doclib__icon--doc     { color: var(--mediapilot-dl-icon-doc);     }
+.mediapilot-doclib__icon--sheet   { color: var(--mediapilot-dl-icon-sheet);   }
+.mediapilot-doclib__icon--ppt     { color: var(--mediapilot-dl-icon-ppt);     }
+.mediapilot-doclib__icon--archive { color: var(--mediapilot-dl-icon-archive); }
+.mediapilot-doclib__icon--audio   { color: var(--mediapilot-dl-icon-audio);   }
+.mediapilot-doclib__icon--video   { color: var(--mediapilot-dl-icon-video);   }
+.mediapilot-doclib__icon--image   { color: var(--mediapilot-dl-icon-image);   }
+.mediapilot-doclib__icon--text    { color: var(--mediapilot-dl-icon-text);    }
+.mediapilot-doclib__icon--file    { color: var(--mediapilot-dl-icon-file);    }
+
+/* ── Download button ─────────────────────────────────────────────────────── */
+.mediapilot-doclib__download {
+    display: inline-block;
+    padding: 0.3rem 0.65rem;
+    background: var(--mediapilot-dl-accent);
+    color: #ffffff;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background 0.15s;
+}
+
+.mediapilot-doclib__download:hover,
+.mediapilot-doclib__download:focus {
+    background: var(--mediapilot-dl-accent-hover);
+    color: #ffffff;
+}
+
+/* ── Empty state ─────────────────────────────────────────────────────────── */
+.mediapilot-doclib__empty {
+    color: var(--mediapilot-dl-muted);
+    text-align: center;
+    padding: 2rem 1rem;
+    font-style: italic;
+    border: 1px solid var(--mediapilot-dl-border);
+    border-radius: var(--mediapilot-dl-radius);
+    margin: 0;
+}
+
+/* ── Pagination ──────────────────────────────────────────────────────────── */
+.mediapilot-doclib__pagination {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.mediapilot-doclib__pages {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.mediapilot-doclib__page-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2rem;
+    height: 2rem;
+    padding: 0 0.4rem;
+    background: var(--mediapilot-dl-bg);
+    border: 1px solid var(--mediapilot-dl-border);
+    border-radius: 4px;
+    font-size: 0.875rem;
+    font-family: inherit;
+    cursor: pointer;
+    color: var(--mediapilot-dl-text);
+    transition: border-color 0.15s, background 0.15s;
+}
+
+.mediapilot-doclib__page-btn:hover {
+    border-color: var(--mediapilot-dl-accent);
+    color: var(--mediapilot-dl-accent);
+}
+
+.mediapilot-doclib__page-btn--current {
+    background: var(--mediapilot-dl-accent);
+    border-color: var(--mediapilot-dl-accent);
+    color: #ffffff;
+    cursor: default;
+    font-weight: 600;
+}
+
+.mediapilot-doclib__page-ellipsis {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2rem;
+    color: var(--mediapilot-dl-muted);
+}
+
+.mediapilot-doclib__total {
+    color: var(--mediapilot-dl-muted);
+    font-size: 0.85rem;
+    margin: 0;
+}
+
+/* ── Responsive — stack table on narrow viewports ────────────────────────── */
+@media (max-width: 600px) {
+    .mediapilot-doclib__table-wrap { border: none; }
+
+    .mediapilot-doclib__table thead { display: none; }
+
+    .mediapilot-doclib__table,
+    .mediapilot-doclib__table tbody,
+    .mediapilot-doclib__table tr,
+    .mediapilot-doclib__table td {
+        display: block;
+    }
+
+    .mediapilot-doclib__table tr {
+        border: 1px solid var(--mediapilot-dl-border);
+        border-radius: var(--mediapilot-dl-radius);
+        margin-bottom: 0.5rem;
+        padding: 0.5rem 0.75rem;
+    }
+
+    .mediapilot-doclib__table td {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        border-bottom: none;
+        padding: 0.3rem 0;
+        font-size: 0.875rem;
+    }
+
+    .mediapilot-doclib__table td::before {
+        content: attr(data-label) ": ";
+        font-weight: 600;
+        font-size: 0.78rem;
+        color: var(--mediapilot-dl-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+        white-space: nowrap;
+        min-width: 4rem;
+    }
+
+    /* Icon cell — no label needed */
+    .mediapilot-doclib__col-icon::before { display: none; }
+    .mediapilot-doclib__col-dl::before   { display: none; }
+
+    .mediapilot-doclib__col-dl {
+        justify-content: flex-start;
+        text-align: left;
+    }
+}
