@@ -163,49 +163,27 @@ class ProductGallerySync {
             <span id="mediapilot-woo-sync-result"
                   style="display:block;margin-top:6px;font-size:12px;min-height:1em;"></span>
         </p>
-        <?php ob_start(); ?>
-        (function () {
-            var btn    = document.getElementById('mediapilot-woo-sync-now');
-            var result = document.getElementById('mediapilot-woo-sync-result');
-            if ( ! btn ) return;
-
-            btn.addEventListener('click', function () {
-                btn.disabled       = true;
-                result.style.color = '';
-                result.textContent = <?php echo wp_json_encode( __( 'Syncing…', 'mediapilot-ai') ); ?>;
-
-                fetch(btn.dataset.url, {
-                    method:  'POST',
-                    headers: {
-                        'X-WP-Nonce':   btn.dataset.nonce,
-                        'Content-Type': 'application/json',
-                    },
-                    body: '{}',
-                })
-                .then(function (r) { return r.json(); })
-                .then(function (data) {
-                    if ( data && data.success ) {
-                        result.style.color = 'green';
-                        result.textContent = ( data.data && data.data.message )
-                            ? data.data.message
-                            : <?php echo wp_json_encode( __( 'Synced!', 'mediapilot-ai') ); ?>;
-                    } else {
-                        result.style.color = '#cc1818';
-                        result.textContent = ( data && data.message )
-                            ? data.message
-                            : <?php echo wp_json_encode( __( 'Sync failed.', 'mediapilot-ai') ); ?>;
-                    }
-                    btn.disabled = false;
-                })
-                .catch(function () {
-                    result.style.color = '#cc1818';
-                    result.textContent = <?php echo wp_json_encode( __( 'Request failed. Please try again.', 'mediapilot-ai') ); ?>;
-                    btn.disabled = false;
-                });
-            });
-        })();
         <?php
-        wp_add_inline_script( 'mediapilot-admin', (string) ob_get_clean() );
+        wp_register_script(
+            'mediapilot-woo-sync',
+            MDPAI_URL . 'admin/assets/js/mediapilot-woo-sync.js',
+            [],
+            MDPAI_VERSION,
+            true
+        );
+        wp_localize_script(
+            'mediapilot-woo-sync',
+            'MediaPilotWooSync',
+            [
+                'i18n' => [
+                    'syncing'   => __( 'Syncing…', 'mediapilot-ai' ),
+                    'synced'    => __( 'Synced!', 'mediapilot-ai' ),
+                    'failed'    => __( 'Sync failed.', 'mediapilot-ai' ),
+                    'reqFailed' => __( 'Request failed. Please try again.', 'mediapilot-ai' ),
+                ],
+            ]
+        );
+        wp_enqueue_script( 'mediapilot-woo-sync' );
     }
 
     public function saveMetaBox( int $postId ): void {

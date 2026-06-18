@@ -213,87 +213,30 @@ CREATE TABLE {$table} (
             return;
         }
 
-        wp_register_script( 'mediapilot-replace', false, [], MDPAI_VERSION, true );
+        wp_register_script(
+            'mediapilot-replace',
+            MDPAI_URL . 'admin/assets/js/mediapilot-replace.js',
+            [],
+            MDPAI_VERSION,
+            true
+        );
+        wp_localize_script(
+            'mediapilot-replace',
+            'MediaPilotReplace',
+            [
+                'i18n' => [
+                    'restoreConfirm' => __( 'Restore this version? The current file will be replaced.', 'mediapilot-ai' ),
+                    'restoring'      => __( 'Restoring…', 'mediapilot-ai' ),
+                    'restored'       => __( 'Restored! Reloading…', 'mediapilot-ai' ),
+                    'error'          => __( 'Error', 'mediapilot-ai' ),
+                    'restoreFailed'  => __( 'Restore failed.', 'mediapilot-ai' ),
+                    'uploading'      => __( 'Uploading…', 'mediapilot-ai' ),
+                    'replaced'       => __( 'Replaced! Reloading…', 'mediapilot-ai' ),
+                    'errorDot'       => __( 'Error.', 'mediapilot-ai' ),
+                ],
+            ]
+        );
         wp_enqueue_script( 'mediapilot-replace' );
-        ob_start();
-        ?>
-        (function () {
-            // ── Edit Media page ──────────────────────────────────────────────
-            // ── Restore button ───────────────────────────────────────────────
-            document.querySelectorAll('.mediapilot-restore-btn').forEach(function (btn) {
-                btn.addEventListener('click', async function () {
-                    if (!confirm('<?php echo esc_js( __( 'Restore this version? The current file will be replaced.', 'mediapilot-ai') ); ?>')) return;
-                    const api   = btn.dataset.api;
-                    const nonce = btn.dataset.nonce;
-                    btn.disabled = true;
-                    btn.textContent = '<?php echo esc_js( __( 'Restoring…', 'mediapilot-ai') ); ?>';
-                    try {
-                        const res  = await fetch(api, { method: 'POST', headers: { 'X-WP-Nonce': nonce } });
-                        const data = await res.json();
-                        if (data.success) {
-                            btn.textContent = '<?php echo esc_js( __( 'Restored! Reloading…', 'mediapilot-ai') ); ?>';
-                            setTimeout(() => window.location.reload(), 1200);
-                        } else {
-                            btn.textContent = '<?php echo esc_js( __( 'Error', 'mediapilot-ai') ); ?>';
-                            alert(data.message || '<?php echo esc_js( __( 'Restore failed.', 'mediapilot-ai') ); ?>');
-                            btn.disabled = false;
-                        }
-                    } catch (e) {
-                        btn.textContent = '<?php echo esc_js( __( 'Error', 'mediapilot-ai') ); ?>';
-                        btn.disabled = false;
-                    }
-                });
-            });
-
-            // ── Edit Media page ──────────────────────────────────────────────
-            document.querySelectorAll('.mediapilot-replace-wrap').forEach(function (wrap) {
-                const input  = wrap.querySelector('.mediapilot-replace-input');
-                const btn    = wrap.querySelector('.mediapilot-replace-btn');
-                const status = wrap.querySelector('.mediapilot-replace-status');
-                const api    = wrap.dataset.api;
-                const nonce  = wrap.dataset.nonce;
-
-                input.addEventListener('change', function () {
-                    btn.disabled = !this.files.length;
-                });
-
-                btn.addEventListener('click', async function () {
-                    if (!input.files.length) return;
-
-                    btn.disabled = true;
-                    status.textContent = '<?php echo esc_js( __( 'Uploading…', 'mediapilot-ai') ); ?>';
-                    status.style.color = '#64748b';
-
-                    const fd = new FormData();
-                    fd.append('file', input.files[0]);
-
-                    try {
-                        const res = await fetch(api, {
-                            method: 'POST',
-                            headers: { 'X-WP-Nonce': nonce },
-                            body: fd,
-                        });
-                        const data = await res.json();
-
-                        if (data.success) {
-                            status.textContent = '<?php echo esc_js( __( 'Replaced! Reloading…', 'mediapilot-ai') ); ?>';
-                            status.style.color = '#16a34a';
-                            setTimeout(() => window.location.reload(), 1200);
-                        } else {
-                            status.textContent = data.message || '<?php echo esc_js( __( 'Error.', 'mediapilot-ai') ); ?>';
-                            status.style.color = '#ef4444';
-                            btn.disabled = false;
-                        }
-                    } catch (e) {
-                        status.textContent = e.message;
-                        status.style.color = '#ef4444';
-                        btn.disabled = false;
-                    }
-                });
-            });
-        })();
-        <?php
-        wp_add_inline_script( 'mediapilot-replace', (string) ob_get_clean() );
     }
 
     // -------------------------------------------------------------------------

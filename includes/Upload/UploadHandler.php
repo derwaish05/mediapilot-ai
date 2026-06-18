@@ -191,16 +191,30 @@ class UploadHandler {
      * @param  int $attachmentId  Newly created attachment post ID.
      */
     public function autoAssignFolder( int $attachmentId ): void {
+        // Only assign folders for users who are actually allowed to upload media.
+        if ( ! current_user_can( 'upload_files' ) ) {
+            return;
+        }
+
         $userId   = get_current_user_id();
         $fromPost = false;
 
-        // 1. Check REST static property first.
+        // 1. Check REST static property first (set by handleRestUploadFolder,
+        //    which runs after the REST attachment route's own permission check).
         $folderId = self::$restUploadFolderId;
 
-        // 2. Check classic upload modal POST data.
-        if ( $folderId <= 0 && isset( $_POST['mdpai_upload_folder_id'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing -- folder ID is safe (absint sanitized), nonce check done by WP core upload handler
-            $folderId = absint( $_POST['mdpai_upload_folder_id'] ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
-            $fromPost = ( $folderId > 0 );
+        // 2. Check classic upload modal POST data. The folder id is posted
+        //    alongside WordPress's own media-upload nonce, so verify that nonce
+        //    before trusting the value rather than relying on it implicitly.
+        if ( $folderId <= 0 && isset( $_POST['mdpai_upload_folder_id'] ) ) {
+            $nonce = isset( $_POST['_wpnonce'] )
+                ? sanitize_text_field( wp_unslash( $_POST['_wpnonce'] ) )
+                : '';
+
+            if ( '' !== $nonce && wp_verify_nonce( $nonce, 'media-form' ) ) {
+                $folderId = absint( wp_unslash( $_POST['mdpai_upload_folder_id'] ) );
+                $fromPost = ( $folderId > 0 );
+            }
         } elseif ( $folderId > 0 ) {
             // Came from REST — treat as an interactive choice.
             $fromPost = true;
@@ -215,6 +229,13 @@ class UploadHandler {
 
         if ( $folderId <= 0 ) {
             // Nothing to assign — file lands in Uncategorized.
+            return;
+        }
+
+        // Validate that the target folder is a real term in our taxonomy before
+        // assigning, so a tampered request cannot point at an arbitrary term ID.
+        $term = get_term( $folderId, \MediaPilotAI\Taxonomy\FolderTaxonomy::TAXONOMY );
+        if ( ! ( $term instanceof \WP_Term ) ) {
             return;
         }
 
@@ -255,30 +276,16 @@ class UploadHandler {
             . '</select>'
             . '</div>';
 
-        // Wire the <select> value into every plupload upload, attached to the
-        // core wp-plupload handle (no raw <script> tag). post_upload_ui renders
-        // before footer scripts print, so this inline is included.
-        ob_start();
-        ?>
-(function($){
-    $(function(){
-        if(typeof wp !== "undefined" && wp.Uploader) {
-            var origInit = wp.Uploader.prototype.init;
-            wp.Uploader.prototype.init = function() {
-                origInit.apply(this, arguments);
-                this.uploader.bind("BeforeUpload", function(up, file) {
-                    var folderSelect = document.getElementById("mediapilot-upload-folder");
-                    if(folderSelect) {
-                        up.settings.multipart_params = up.settings.multipart_params || {};
-                        up.settings.multipart_params.mdpai_upload_folder_id = folderSelect.value;
-                    }
-                });
-            };
-        }
-    });
-})(jQuery);
-        <?php
-        wp_add_inline_script( 'wp-plupload', (string) ob_get_clean() );
+        // Wire the <select> value into every plupload upload via a real enqueued
+        // file that depends on wp-plupload (so wp.Uploader exists). post_upload_ui
+        // renders before footer scripts print, so this enqueue is included.
+        wp_enqueue_script(
+            'mediapilot-upload-folder',
+            MDPAI_URL . 'admin/assets/js/mediapilot-upload-folder.js',
+            [ 'jquery', 'wp-plupload' ],
+            MDPAI_VERSION,
+            true
+        );
     }
 
     // -------------------------------------------------------------------------
@@ -375,7 +382,7 @@ class UploadHandler {
 
         // --- 5. Remove <use> elements referencing external URLs. ---
         // Preserve internal fragment references (href="#id") but strip anything
-        // that points outside the document (e.g. href="http://evil.com/sprite.svg#icon").
+        // that points to an absolute, off-document target for SVG hardening.
         $content = preg_replace(
             '/<use\b[^>]*(?:href|xlink:href)\s*=\s*["\'](?!#)[^"\']*["\'][^>]*\/?>/si',
             '',

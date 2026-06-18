@@ -702,39 +702,27 @@ class SettingsPage {
 
             <?php
             if ( '' !== $runningSlug ) :
-                wp_register_script( 'mediapilot-migration-poll', false, [], MDPAI_VERSION, true );
+                wp_register_script(
+                    'mediapilot-migration-poll',
+                    MDPAI_URL . 'admin/assets/js/mediapilot-migration-poll.js',
+                    [],
+                    MDPAI_VERSION,
+                    true
+                );
+                wp_localize_script(
+                    'mediapilot-migration-poll',
+                    'MediaPilotMigration',
+                    [
+                        'slug'     => $runningSlug,
+                        'restBase' => esc_url_raw( rest_url( 'mediapilot/v1/migration/progress' ) ),
+                        'nonce'    => wp_create_nonce( 'wp_rest' ),
+                        'i18n'     => [
+                            'done'  => __( 'Done', 'mediapilot-ai' ),
+                            'error' => __( 'Error', 'mediapilot-ai' ),
+                        ],
+                    ]
+                );
                 wp_enqueue_script( 'mediapilot-migration-poll' );
-                ob_start();
-                ?>
-            (function () {
-                'use strict';
-                var slug     = <?php echo json_encode( $runningSlug ); ?>;
-                var restBase = <?php echo json_encode( esc_url_raw( rest_url( 'mediapilot/v1/migration/progress' ) ) ); ?>;
-                var nonce    = <?php echo json_encode( wp_create_nonce( 'wp_rest' ) ); ?>;
-
-                function poll() {
-                    fetch( restBase + '?slug=' + encodeURIComponent( slug ), { headers: { 'X-WP-Nonce': nonce } } )
-                        .then( function(r) { return r.json(); } )
-                        .then( function(data) {
-                            var pct   = data.total > 0 ? Math.round( (data.processed / data.total) * 100 ) : (data.status === 'done' ? 100 : 0);
-                            var bar   = document.querySelector( '.mediapilot-migration-bar[data-slug="' + slug + '"]' );
-                            var pctEl = document.querySelector( '.mediapilot-migration-pct[data-slug="' + slug + '"]' );
-                            var stat  = document.querySelector( '.mediapilot-migration-status[data-slug="' + slug + '"]' );
-                            if ( bar )   bar.style.width = pct + '%';
-                            if ( pctEl ) pctEl.textContent = pct + '% (' + data.processed + '/' + data.total + ')';
-                            if ( data.status !== 'running' ) {
-                                if ( stat ) stat.textContent = data.status === 'done' ? '<?php esc_html_e( 'Done', 'mediapilot-ai'); ?>' : '<?php esc_html_e( 'Error', 'mediapilot-ai'); ?>';
-                                setTimeout( function () { window.location.reload(); }, 1500 );
-                            } else {
-                                setTimeout( poll, 5000 );
-                            }
-                        } )
-                        .catch( function() { setTimeout( poll, 10000 ); } );
-                }
-                setTimeout( poll, 5000 );
-            }());
-                <?php
-                wp_add_inline_script( 'mediapilot-migration-poll', (string) ob_get_clean() );
             endif;
             ?>
         <?php endif; ?>

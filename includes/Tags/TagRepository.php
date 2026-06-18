@@ -169,29 +169,34 @@ class TagRepository {
             return [];
         }
 
+        // One %d placeholder per tag id for the IN() list.
         $placeholders = implode( ',', array_fill( 0, count( $tagIds ), '%d' ) );
 
         if ( $mode === 'AND' ) {
-            $sql = $this->db->prepare(
-                "SELECT attachment_id
-                 FROM {$this->relTable}
-                 WHERE tag_id IN ({$placeholders})
-                 GROUP BY attachment_id
-                 HAVING COUNT(DISTINCT tag_id) = %d",
-                // phpcs:ignore WordPress.DB.PreparedSQLPlaceholders.ReplacementsWrongNumber
-                ...[ ...$tagIds, count( $tagIds ) ]
+            // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- $relTable is a $wpdb->prefix-derived table name; $placeholders is a generated list of %d markers; values are bound via prepare() below.
+            $rows = $this->db->get_col(
+                $this->db->prepare(
+                    "SELECT attachment_id
+                     FROM {$this->relTable}
+                     WHERE tag_id IN ({$placeholders})
+                     GROUP BY attachment_id
+                     HAVING COUNT(DISTINCT tag_id) = %d",
+                    ...[ ...$tagIds, count( $tagIds ) ] // phpcs:ignore WordPress.DB.PreparedSQLPlaceholders.ReplacementsWrongNumber
+                )
             );
         } else {
-            $sql = $this->db->prepare(
-                "SELECT DISTINCT attachment_id
-                 FROM {$this->relTable}
-                 WHERE tag_id IN ({$placeholders})",
-                // phpcs:ignore WordPress.DB.PreparedSQLPlaceholders.ReplacementsWrongNumber
-                ...$tagIds
+            // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- $relTable is a $wpdb->prefix-derived table name; $placeholders is a generated list of %d markers; values are bound via prepare() below.
+            $rows = $this->db->get_col(
+                $this->db->prepare(
+                    "SELECT DISTINCT attachment_id
+                     FROM {$this->relTable}
+                     WHERE tag_id IN ({$placeholders})",
+                    ...$tagIds // phpcs:ignore WordPress.DB.PreparedSQLPlaceholders.ReplacementsWrongNumber
+                )
             );
         }
 
-        return array_map( 'intval', $this->db->get_col( $sql ) );
+        return array_map( 'intval', (array) $rows );
     }
 
     /**

@@ -80,6 +80,7 @@ class WpmlIntegration {
             return $tree;
         }
 
+        // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- WPML-provided filter; the hook name is defined by WPML, this plugin only consumes it.
         $lang = (string) apply_filters( 'wpml_current_language', null );
 
         return $this->filterNodes( $tree, $lang );
@@ -121,6 +122,7 @@ class WpmlIntegration {
 
             // wpml_object_id returns the translated ID in $lang, or null when
             // no translation exists.
+            // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- WPML-provided filter; the hook name is defined by WPML, this plugin only consumes it.
             $translatedId = (int) apply_filters( 'wpml_object_id', $termId, 'mdpai_folder', false, $lang );
 
             if ( 0 === $translatedId ) {

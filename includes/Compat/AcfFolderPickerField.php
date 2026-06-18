@@ -39,7 +39,9 @@ class AcfFolderPickerField extends \acf_field {
     ) {
         $this->name     = 'mdpai_folder_picker';
         $this->label    = __( 'MediaPilot Folder Picker', 'mediapilot-ai');
-        $this->category = __( 'Choice', 'acf' ); // phpcs:ignore WordPress.WP.I18n.TextDomainMismatch -- ACF-provided string uses 'acf' domain intentionally
+        // ACF groups custom fields by this category label; we use our own text
+        // domain so the string matches the plugin slug (Plugin Check requirement).
+        $this->category = __( 'Choice', 'mediapilot-ai' );
 
         $this->defaults = [
             'allow_none' => 1,

@@ -235,6 +235,11 @@ class ClientPortal {
         status_header( 200 );
         header( 'Content-Type: text/html; charset=utf-8' );
 
+        // Standalone portal document: register + enqueue the local stylesheet and
+        // print it through the styles API (no hand-written <link> tag).
+        wp_register_style( 'mediapilot-portal', MDPAI_URL . 'admin/assets/css/mediapilot-portal.css', [], MDPAI_VERSION );
+        wp_enqueue_style( 'mediapilot-portal' );
+
         ?>
 <!DOCTYPE html>
 <html lang="<?php echo esc_attr( get_locale() ); ?>">
@@ -242,7 +247,7 @@ class ClientPortal {
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title><?php echo $pageTitle; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- $pageTitle built from esc_html() calls above ?></title>
-<link rel="stylesheet" href="<?php echo esc_url( MDPAI_URL . 'admin/assets/css/mediapilot-portal.css?ver=' . MDPAI_VERSION ); ?>">
+<?php wp_print_styles( 'mediapilot-portal' ); ?>
 </head>
 <body style="--mdpai-portal-accent: <?php echo esc_attr( $headerColor ); ?>;">
 
@@ -321,6 +326,11 @@ if ( ! empty( $mdpaiPortalSettings['portal_show_attribution'] ) ) :
         status_header( 200 );
         header( 'Content-Type: text/html; charset=utf-8' );
 
+        // Standalone gate document: enqueue + print the local stylesheet via the
+        // styles API (no hand-written <link> tag).
+        wp_register_style( 'mediapilot-portal', MDPAI_URL . 'admin/assets/css/mediapilot-portal.css', [], MDPAI_VERSION );
+        wp_enqueue_style( 'mediapilot-portal' );
+
         ?>
 <!DOCTYPE html>
 <html lang="<?php echo esc_attr( get_locale() ); ?>">
@@ -328,7 +338,7 @@ if ( ! empty( $mdpaiPortalSettings['portal_show_attribution'] ) ) :
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Protected Share — <?php echo esc_html( get_bloginfo( 'name' ) ); ?></title>
-<link rel="stylesheet" href="<?php echo esc_url( MDPAI_URL . 'admin/assets/css/mediapilot-portal.css?ver=' . MDPAI_VERSION ); ?>">
+<?php wp_print_styles( 'mediapilot-portal' ); ?>
 </head>
 <body class="mediapilot-portal-gate" style="--mdpai-portal-accent: <?php echo esc_attr( $headerColor ); ?>;">
 <div class="gate">

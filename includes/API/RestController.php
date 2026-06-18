@@ -1154,7 +1154,12 @@ class RestController {
     // -------------------------------------------------------------------------
 
     /**
-     * Requires the `upload_files` capability (all logged-in users with media access).
+     * Requires the `upload_files` capability.
+     *
+     * This is the same capability WordPress core requires to open and browse the
+     * Media Library (Author role and above). Endpoints that read or search media
+     * are intentionally scoped to it so they expose exactly the media a user can
+     * already see in wp-admin — no broader, and no narrower.
      */
     public function permUploadFiles(): bool {
         return current_user_can( 'upload_files' );

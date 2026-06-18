@@ -78,9 +78,37 @@ class AnalyticsDashboard {
             'mediapilot-chartjs',
             MDPAI_URL . 'admin/assets/vendor/chart.umd.js',
             [],
-            '4.5.0',
+            '4.5.1',
             true
         );
+
+        // Dashboard behaviour as a real enqueued file (depends on Chart.js),
+        // with all data and strings passed via wp_localize_script.
+        wp_register_script(
+            'mediapilot-analytics-dashboard',
+            MDPAI_URL . 'admin/assets/js/mediapilot-analytics-dashboard.js',
+            [ 'mediapilot-chartjs' ],
+            MDPAI_VERSION,
+            true
+        );
+        wp_localize_script(
+            'mediapilot-analytics-dashboard',
+            'MediaPilotAnalytics',
+            [
+                'restBase'     => esc_url_raw( rest_url( 'mediapilot/v1/analytics' ) ),
+                'exportUrl'    => esc_url_raw( rest_url( 'mediapilot/v1/analytics/export' ) ),
+                'backfillUrl'  => esc_url_raw( rest_url( 'mediapilot/v1/analytics/backfill-sizes' ) ),
+                'usageScanUrl' => esc_url_raw( rest_url( 'mediapilot/v1/usage/scan/advance' ) ),
+                'nonce'        => wp_create_nonce( 'wp_rest' ),
+                'i18n'         => [
+                    'uploads'    => __( 'Uploads', 'mediapilot-ai' ),
+                    'storage'    => __( 'Storage', 'mediapilot-ai' ),
+                    'scanFailed' => __( 'Scan failed. Please try again.', 'mediapilot-ai' ),
+                    'starting'   => __( 'Starting…', 'mediapilot-ai' ),
+                ],
+            ]
+        );
+        wp_enqueue_script( 'mediapilot-analytics-dashboard' );
 
         // Analytics page styles, attached to an inline-only style handle so the
         // view does not emit a raw <style> tag.
@@ -615,103 +643,21 @@ class AnalyticsDashboard {
             return;
         }
 
-        $nonce   = wp_json_encode( wp_create_nonce( 'wp_rest' ) );
-        $restUrl = wp_json_encode( rest_url( 'mediapilot/v1/analytics/track' ) );
-
-        // Inline-only registered handle so the snippet is enqueued, not a raw
-        // <script> tag. The script self-guards for wp.media availability.
-        wp_register_script( 'mediapilot-analytics-track', false, [], MDPAI_VERSION, true );
+        wp_register_script(
+            'mediapilot-analytics-track',
+            MDPAI_URL . 'admin/assets/js/mediapilot-analytics-track.js',
+            [],
+            MDPAI_VERSION,
+            true
+        );
+        wp_localize_script(
+            'mediapilot-analytics-track',
+            'MediaPilotAnalyticsTrack',
+            [
+                'nonce'   => wp_create_nonce( 'wp_rest' ),
+                'restUrl' => esc_url_raw( rest_url( 'mediapilot/v1/analytics/track' ) ),
+            ]
+        );
         wp_enqueue_script( 'mediapilot-analytics-track' );
-        ob_start();
-        ?>
-        ( function() {
-            'use strict';
-
-            var nonce   = <?php echo $nonce; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>;
-            var restUrl = <?php echo $restUrl; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>;
-
-            /**
-             * Sends an analytics event to the MediaPilot REST endpoint.
-             *
-             * @param {number} attachmentId
-             * @param {string} eventType  'insert' | 'download'
-             */
-            function trackEvent( attachmentId, eventType ) {
-                if ( ! attachmentId ) { return; }
-                fetch( restUrl, {
-                    method:    'POST',
-                    keepalive: true,
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-WP-Nonce':   nonce
-                    },
-                    body: JSON.stringify( {
-                        attachment_id: attachmentId,
-                        event_type:    eventType
-                    } )
-                } ).catch( function() {} );
-            }
-
-            /**
-             * Resolve the attachment id currently shown in the media modal.
-             * Works for the grid "edit attachment" view (frame.model) and falls
-             * back to the nearest [data-id] element in the DOM.
-             *
-             * @param {Element} el  The clicked element.
-             * @return {number}
-             */
-            function resolveModalAttachmentId( el ) {
-                var id = 0;
-                try {
-                    if ( window.wp && wp.media && wp.media.frame && wp.media.frame.model && wp.media.frame.model.get ) {
-                        id = parseInt( wp.media.frame.model.get( 'id' ), 10 ) || 0;
-                    }
-                } catch ( e ) {}
-                if ( ! id && el && el.closest ) {
-                    var holder = el.closest( '[data-id]' );
-                    if ( holder ) { id = parseInt( holder.getAttribute( 'data-id' ), 10 ) || 0; }
-                }
-                return id;
-            }
-
-            // Track downloads: the attachment details modal renders a
-            // "Download file" link carrying a `download` attribute. Delegated so
-            // it works no matter when the modal is opened. Registered immediately
-            // (no wp.media dependency for the listener itself).
-            document.addEventListener( 'click', function( e ) {
-                if ( ! e.target || ! e.target.closest ) { return; }
-                var link = e.target.closest( 'a[download]' );
-                if ( ! link ) { return; }
-                if ( ! link.closest( '.media-modal, .attachment-details, .attachment-info, .media-frame' ) ) { return; }
-                var id = resolveModalAttachmentId( link );
-                if ( id ) { trackEvent( id, 'download' ); }
-            }, true );
-
-            document.addEventListener( 'DOMContentLoaded', function() {
-                // Wait for wp.media to be available before patching inserts.
-                if ( typeof wp === 'undefined' || ! wp.media ) { return; }
-
-                // Patch: media editor insert -> 'insert' event per attachment
-                // (classic editor "Add Media" -> Insert into post/page flow).
-                if ( wp.media.editor && typeof wp.media.editor.insert === 'function' ) {
-                    var _insert = wp.media.editor.insert;
-                    wp.media.editor.insert = function( html ) {
-                        try {
-                            var state      = wp.media.frame && wp.media.frame.state && wp.media.frame.state();
-                            var selection  = state && state.get( 'selection' );
-                            if ( selection ) {
-                                selection.each( function( model ) {
-                                    var id = model && model.get( 'id' );
-                                    if ( id ) { trackEvent( id, 'insert' ); }
-                                } );
-                            }
-                        } catch ( e ) {}
-                        return _insert.apply( this, arguments );
-                    };
-                }
-            } );
-        } )();
-        <?php
-        wp_add_inline_script( 'mediapilot-analytics-track', (string) ob_get_clean() );
     }
 }

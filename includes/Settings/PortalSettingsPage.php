@@ -90,8 +90,6 @@ class PortalSettingsPage {
 
         $links   = $this->linkRepo->getAll();
         $folders = $this->flatFolders( $this->folderRepo->getTree( 0 ) );
-        $apiRoot = esc_js( rest_url( 'mediapilot/v1' ) );
-        $nonce   = wp_create_nonce( 'wp_rest' );
 
         ?>
         <div class="wrap" id="mediapilot-portal-page">
@@ -220,84 +218,34 @@ class PortalSettingsPage {
         </div>
 
         <?php
+        // Tiny admin-table style via the sanctioned inline-style API.
         wp_register_style( 'mediapilot-portal-settings', false );
         wp_enqueue_style( 'mediapilot-portal-settings' );
         wp_add_inline_style( 'mediapilot-portal-settings', '.mediapilot-expired-row { opacity: .6; }' );
 
-        wp_register_script( 'mediapilot-portal-settings-js', false, [], MDPAI_VERSION, true );
+        // Behavior script as a real enqueued file with localized data.
+        wp_register_script(
+            'mediapilot-portal-settings-js',
+            MDPAI_URL . 'admin/assets/js/mediapilot-portal-settings.js',
+            [],
+            MDPAI_VERSION,
+            true
+        );
+        wp_localize_script(
+            'mediapilot-portal-settings-js',
+            'MediaPilotPortalSettings',
+            [
+                'apiRoot' => esc_url_raw( rest_url( 'mediapilot/v1' ) ),
+                'nonce'   => wp_create_nonce( 'wp_rest' ),
+                'i18n'    => [
+                    'selectFolder'  => __( 'Please select a folder.', 'mediapilot-ai' ),
+                    'creating'      => __( 'Creating…', 'mediapilot-ai' ),
+                    'errorCreating' => __( 'Error creating link.', 'mediapilot-ai' ),
+                    'generate'      => __( 'Generate Share Link', 'mediapilot-ai' ),
+                ],
+            ]
+        );
         wp_enqueue_script( 'mediapilot-portal-settings-js' );
-        ob_start();
-        ?>
-        (function () {
-            const API_ROOT = '<?php echo $apiRoot; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- $apiRoot is pre-escaped via esc_js( rest_url() ) on line 92 ?>';
-            const NONCE    = '<?php echo esc_js( $nonce ); ?>';
-
-            function apiRequest(method, path, body) {
-                return fetch(API_ROOT + path, {
-                    method,
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-WP-Nonce': NONCE,
-                    },
-                    body: body ? JSON.stringify(body) : undefined,
-                }).then(r => r.json());
-            }
-
-            // Create share link.
-            document.getElementById('mediapilot-share-create').addEventListener('click', async function () {
-                const folderId = document.getElementById('mediapilot-share-folder').value;
-                if (!folderId) { alert('<?php esc_js( esc_html__( 'Please select a folder.', 'mediapilot-ai') ); ?>'); return; }
-
-                const btn = this;
-                btn.disabled = true;
-                btn.textContent = '<?php esc_js( esc_html__( 'Creating…', 'mediapilot-ai') ); ?>';
-
-                const errEl = document.getElementById('mediapilot-share-error');
-                errEl.style.display = 'none';
-
-                const body = {
-                    password:     document.getElementById('mediapilot-share-password').value,
-                    expires_at:   document.getElementById('mediapilot-share-expires').value || null,
-                    header_color: document.getElementById('mediapilot-share-color').value,
-                    logo_url:     document.getElementById('mediapilot-share-logo').value,
-                };
-
-                try {
-                    const res = await apiRequest('POST', '/folders/' + folderId + '/share', body);
-                    if (res.success) {
-                        window.location.reload();
-                    } else {
-                        errEl.textContent = res.message || '<?php esc_js( esc_html__( 'Error creating link.', 'mediapilot-ai') ); ?>';
-                        errEl.style.display = 'block';
-                    }
-                } catch (e) {
-                    errEl.textContent = e.message;
-                    errEl.style.display = 'block';
-                } finally {
-                    btn.disabled = false;
-                    btn.textContent = '<?php esc_js( esc_html__( 'Generate Share Link', 'mediapilot-ai') ); ?>';
-                }
-            });
-
-            // Revoke links.
-            document.querySelectorAll('.mediapilot-revoke-btn').forEach(function (btn) {
-                btn.addEventListener('click', async function () {
-                    if (!confirm(this.dataset.confirm)) return;
-                    const id = this.dataset.id;
-                    try {
-                        const res = await apiRequest('DELETE', '/shares/' + id);
-                        if (res.success) {
-                            const row = document.querySelector('tr[data-id="' + id + '"]');
-                            if (row) row.remove();
-                        }
-                    } catch (e) {
-                        alert(e.message);
-                    }
-                });
-            });
-        })();
-        <?php
-        wp_add_inline_script( 'mediapilot-portal-settings-js', (string) ob_get_clean() );
     }
 
     // -------------------------------------------------------------------------

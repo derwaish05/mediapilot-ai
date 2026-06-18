@@ -826,64 +826,30 @@ class DuplicateDetector {
         ) {
             return;
         }
-        wp_register_script( 'mediapilot-find-similar', false, [], MDPAI_VERSION, true );
+        wp_register_script(
+            'mediapilot-find-similar',
+            MDPAI_URL . 'admin/assets/js/mediapilot-find-similar.js',
+            [],
+            MDPAI_VERSION,
+            true
+        );
+        wp_localize_script(
+            'mediapilot-find-similar',
+            'MediaPilotFindSimilar',
+            [
+                'restBase' => esc_url_raw( rest_url( 'mediapilot/v1/' ) ),
+                'nonce'    => wp_create_nonce( 'wp_rest' ),
+                'i18n'     => [
+                    'searching' => __( 'Searching…', 'mediapilot-ai' ),
+                    'none'      => __( 'No visually similar images found.', 'mediapilot-ai' ),
+                    'find'      => __( 'Find Similar Images', 'mediapilot-ai' ),
+                    'similar'   => __( 'similar image(s):', 'mediapilot-ai' ),
+                    'refresh'   => __( 'Refresh', 'mediapilot-ai' ),
+                    'error'     => __( 'Error loading results.', 'mediapilot-ai' ),
+                ],
+            ]
+        );
         wp_enqueue_script( 'mediapilot-find-similar' );
-
-        // Buffer is PURE JS (no <script> wrapper): wp_add_inline_script() adds
-        // its own wrapper, so an inline <script>/</script> here would break it.
-        ob_start();
-        ?>
-(function () {
-    var REST_BASE = window.MediaPilotConfig && window.MediaPilotConfig.restBase
-        ? window.MediaPilotConfig.restBase
-        : '<?php echo esc_js( rest_url( 'mediapilot/v1/' ) ); ?>';
-    var NONCE = window.MediaPilotConfig && window.MediaPilotConfig.nonce
-        ? window.MediaPilotConfig.nonce
-        : '<?php echo esc_js( wp_create_nonce( 'wp_rest' ) ); ?>';
-
-    document.addEventListener('click', function (e) {
-        var btn = e.target.closest('.mediapilot-find-similar-btn');
-        if (!btn) return;
-
-        var id        = btn.dataset.id;
-        var container = document.querySelector('.mediapilot-similar-results[data-id="' + id + '"]');
-        if (!container) return;
-
-        btn.disabled    = true;
-        btn.textContent = '<?php echo esc_js( __( 'Searching…', 'mediapilot-ai') ); ?>';
-
-        fetch(REST_BASE + 'files/similar/' + id, {
-            headers: { 'X-WP-Nonce': NONCE }
-        })
-        .then(function (r) { return r.json(); })
-        .then(function (res) {
-            if (!res.success || !res.data || !res.data.similar.length) {
-                container.innerHTML = '<p style="color:#666;font-size:12px;margin:4px 0"><?php echo esc_js( __( 'No visually similar images found.', 'mediapilot-ai') ); ?></p>';
-                btn.textContent = '<?php echo esc_js( __( 'Find Similar Images', 'mediapilot-ai') ); ?>';
-                btn.disabled    = false;
-                return;
-            }
-            var files = res.data.similar;
-            var html  = '<p style="font-size:11px;color:#555;margin:4px 0 6px">' + files.length + ' <?php echo esc_js( __( 'similar image(s):', 'mediapilot-ai') ); ?></p>';
-            html += files.map(function (f) {
-                return '<a href="' + f.url + '" target="_blank" title="' + f.filename + '" style="display:inline-block;margin:2px">'
-                     + '<img src="' + f.thumbnail_url + '" width="60" height="60"'
-                     + ' style="object-fit:cover;border-radius:3px;border:1px solid #ddd;vertical-align:top">'
-                     + '</a>';
-            }).join('');
-            container.innerHTML = html;
-            btn.textContent = '<?php echo esc_js( __( 'Refresh', 'mediapilot-ai') ); ?>';
-            btn.disabled    = false;
-        })
-        .catch(function () {
-            container.innerHTML = '<p style="color:#c00;font-size:12px;margin:4px 0"><?php echo esc_js( __( 'Error loading results.', 'mediapilot-ai') ); ?></p>';
-            btn.textContent = '<?php echo esc_js( __( 'Find Similar Images', 'mediapilot-ai') ); ?>';
-            btn.disabled    = false;
-        });
-    });
-}());
-        <?php
-        wp_add_inline_script( 'mediapilot-find-similar', (string) ob_get_clean() );
     }
 
     /**

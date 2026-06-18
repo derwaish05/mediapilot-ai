@@ -18,11 +18,10 @@ if ( ! defined( 'ABSPATH' ) ) {
  *   - `the_content` (inline <img src> and srcset attributes)
  *   - `wp_get_attachment_image_src`
  *
- * Supported providers (all work with a custom CDN base URL):
- *   cloudflare  — e.g. https://cdn.example.com
- *   bunnycdn    — e.g. https://your-zone.b-cdn.net
- *   cloudfront  — e.g. https://d1234abcde.cloudfront.net
- *   custom      — any URL prefix
+ * Supported providers (all work with a site-owner-supplied CDN base URL):
+ *   cloudflare, bunnycdn, cloudfront, or any custom CDN host prefix.
+ * The CDN base URL is entered by the site administrator in the plugin
+ * settings; the plugin does not call any hard-coded remote host.
  *
  * The provider field currently drives the settings UI label only;
  * all rewrites are performed via the single cdn_base_url value.
@@ -41,7 +40,9 @@ class CdnRewriter {
     public function __construct( string $cdnBaseUrl ) {
         $uploadsDir           = wp_get_upload_dir();
         $this->uploadsBaseUrl = rtrim( (string) $uploadsDir['baseurl'], '/' );
-        $this->cdnBaseUrl     = rtrim( $cdnBaseUrl, '/' );
+        // Sanitise the admin-supplied CDN base URL so every rewrite (including
+        // into the_content) outputs a safe URL — escaping late at the source.
+        $this->cdnBaseUrl     = esc_url_raw( rtrim( $cdnBaseUrl, '/' ) );
     }
 
     // -------------------------------------------------------------------------

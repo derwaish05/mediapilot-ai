@@ -2,7 +2,7 @@
 Contributors: brainstudioz
 Tags: media management, digital asset manager, media library, AI media, image optimization
 Requires at least: 6.4
-Tested up to: 6.8
+Tested up to: 7.0
 Requires PHP: 8.1
 Stable tag: 1.0.0
 License: GPL-2.0-or-later
@@ -29,28 +29,24 @@ It is built for agencies, eCommerce stores, marketers, and content teams that ne
 * **Document Library** — public-facing searchable file library via shortcode
 * **Client Portal** — password-protected share links for external clients
 * **CDN URL Rewriting** — optionally serve media from your own CDN (opt-in)
-* **Gallery Blocks** — Gutenberg block, Elementor widget, Divi module, Beaver Builder module, and WPBakery element
+* **Gallery Blocks** — a native block-editor block plus widgets and modules for the major page builders
 * **CSV Import/Export** — migrate folder structures and file assignments
 * **WP-CLI Support** — manage folders, export data, and run optimization from the command line
 * **Developer Hooks** — extensive `do_action` and `apply_filters` hooks for customization
 
-= Page Builder Integrations =
+= Page Builder Support =
 
-* Gutenberg (block editor)
-* Elementor
-* Divi Builder
-* Beaver Builder
-* WPBakery Page Builder
-* Bricks Builder
+* Native WordPress block editor
+* Compatible with the major third-party page builders
 
-= Third-Party Integrations =
+= Integrations =
 
-* WooCommerce — product gallery sync
-* ACF — folder picker field
-* FileBird, Real Media Library, Wicked Folders, HappyFiles — one-click import
-* WPML, Polylang — multilingual support
+* eCommerce product gallery sync
+* Custom-field folder picker
+* One-click import from other media-folder organizer plugins
+* Multilingual-ready — compatible with major translation plugins
 
-== External Services ==
+== External services ==
 
 By default MediaPilot AI does **not** contact any external service and no data leaves your site. The integrations below are optional and only run after you enable them and supply your own credentials in **Media › MediaPilot AI Settings**.
 
@@ -92,7 +88,7 @@ Only if you opt in. AI tagging and OCR are disabled by default. They run only af
 
 No. You can create as many folders as your site requires.
 
-= Can I import my existing folders from FileBird or Real Media Library? =
+= Can I import my existing folders from another media-folder plugin? =
 
 Yes. Go to **Media > MediaPilot AI Settings > Migration** and choose your source plugin to import all folders and file assignments.
 
@@ -130,7 +126,7 @@ The plugin supports standard WordPress installations. Multisite compatibility ha
 * Duplicate detection (exact + visually similar) with a cancellable, batched background scan.
 * AI tagging (Google Vision / AWS Rekognition) and OCR (Google Vision / AWS Textract) — all opt-in and disclosed under External Services.
 * Document Library shortcode and password-protected Client Portal share links.
-* Optional CDN URL rewriting (opt-in) and Gallery blocks/widgets for Gutenberg, Elementor, Divi, Beaver Builder, and WPBakery.
+* Optional CDN URL rewriting (opt-in) and gallery blocks/widgets for the native block editor and the major page builders.
 * Chart.js is bundled locally; no third-party CDNs are used for plugin assets.
 
 == Upgrade Notice ==
