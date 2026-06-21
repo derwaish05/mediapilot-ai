@@ -51,6 +51,16 @@ class LazyLoader {
                     return $tag;
                 }
 
+                // Never lazy-load an image WordPress core has marked as high
+                // priority (the LCP candidate). Core's wp_filter_content_tags()
+                // runs earlier on the_content (priority 12) and intentionally
+                // omits loading="lazy" on such images; forcing it back on creates
+                // an image that is both lazy-loaded and fetchpriority="high",
+                // which triggers a _doing_it_wrong() notice in core.
+                if ( preg_match( '/\bfetchpriority\s*=\s*["\']?\s*high/i', $tag ) ) {
+                    return $tag;
+                }
+
                 // Insert loading="lazy" right after <img.
                 return preg_replace( '/<img\s/i', '<img loading="lazy" ', $tag, 1 ) ?? $tag;
             },

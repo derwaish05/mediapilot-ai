@@ -94,9 +94,19 @@ class CdnRewriter {
             return $content;
         }
 
+        // `the_content` output is rendered directly as HTML, so the injected CDN
+        // base URL must be escaped for HTML output context at the point of use,
+        // not merely sanitised on input. esc_url() returns '' for an invalid
+        // value, in which case we leave the content untouched.
+        $cdnBaseUrl = esc_url( $this->cdnBaseUrl );
+
+        if ( '' === $cdnBaseUrl ) {
+            return $content;
+        }
+
         return str_replace(
             $this->uploadsBaseUrl,
-            $this->cdnBaseUrl,
+            $cdnBaseUrl,
             $content
         );
     }

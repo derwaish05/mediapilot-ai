@@ -602,6 +602,10 @@ class RestController {
             return $this->error( 'mdpai_folder_not_found', __( 'Folder not found.', 'mediapilot-ai'), 404 );
         }
 
+        if ( ! $this->currentUserCanAccessFolder( $folder ) ) {
+            return $this->error( 'mdpai_forbidden', __( 'You do not have permission to access this folder.', 'mediapilot-ai'), 403 );
+        }
+
         $data = apply_filters(
             'mdpai_rest_folder_response',
             [ 'folder' => $this->formatFolder( $folder ) ],
@@ -737,6 +741,20 @@ class RestController {
         $perPage = min( 100, max( 1, (int) $request->get_param( 'per_page' ) ) );
         $search  = (string) $request->get_param( 'search' );
 
+        // For a specific folder (id > 0) enforce object-level read access; the
+        // special ids 0 (Uncategorized) and -1 (all) are not owned folders.
+        if ( $id > 0 ) {
+            $folder = $this->folderRepository->getById( $id );
+
+            if ( null === $folder ) {
+                return $this->error( 'mdpai_folder_not_found', __( 'Folder not found.', 'mediapilot-ai'), 404 );
+            }
+
+            if ( ! $this->currentUserCanAccessFolder( $folder ) ) {
+                return $this->error( 'mdpai_forbidden', __( 'You do not have permission to access this folder.', 'mediapilot-ai'), 403 );
+            }
+        }
+
         $args = [
             'sort'     => $sort,
             'order'    => $order,
@@ -785,6 +803,17 @@ class RestController {
                 'mdpai_folder_not_found',
                 __( 'Folder not found.', 'mediapilot-ai'),
                 404
+            );
+        }
+
+        // Object-level read check: upload_files alone is not enough in per-user
+        // mode — verify the current user is actually allowed to read this folder
+        // before streaming an archive of every file inside it.
+        if ( ! $this->currentUserCanAccessFolder( $folder ) ) {
+            return $this->error(
+                'mdpai_forbidden',
+                __( 'You do not have permission to access this folder.', 'mediapilot-ai'),
+                403
             );
         }
 
@@ -1177,6 +1206,41 @@ class RestController {
      */
     public function permRead(): bool {
         return current_user_can( 'read' );
+    }
+
+    /**
+     * Per-folder read authorisation.
+     *
+     * The `upload_files` capability (checked by permUploadFiles) only gates
+     * *whether* a user may use the media browser at all. In per-user folder
+     * mode each folder additionally belongs to a specific user, so a second,
+     * object-level check is required before exposing a folder's contents (its
+     * file listing or a ZIP of every file inside it) to the current user.
+     *
+     * Access rules mirror FolderRepository::getTree():
+     *   - Administrators (`manage_options`) may access any folder.
+     *   - In global mode every folder is shared, so any media user may access it.
+     *   - In per-user mode a user may access folders they own, the shared/global
+     *     tree (owner id 0) and legacy folders with no owner meta (also 0).
+     *
+     * @param array<string, mixed> $folder  Normalised folder array from the repository.
+     * @return bool
+     */
+    private function currentUserCanAccessFolder( array $folder ): bool {
+        if ( current_user_can( 'manage_options' ) ) {
+            return true;
+        }
+
+        $settings   = (array) get_option( 'mdpai_settings', [] );
+        $folderMode = isset( $settings['folder_mode'] ) ? (string) $settings['folder_mode'] : 'global';
+
+        if ( 'global' === $folderMode ) {
+            return true;
+        }
+
+        $ownerId = isset( $folder['user_id'] ) ? (int) $folder['user_id'] : 0;
+
+        return 0 === $ownerId || $ownerId === get_current_user_id();
     }
 
     // -------------------------------------------------------------------------
